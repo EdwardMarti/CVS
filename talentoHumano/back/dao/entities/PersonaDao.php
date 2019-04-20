@@ -693,7 +693,7 @@ AND table_schema = 'talento_humano';";
 
 
         try {
-            $sql = "SELECT `id`, `cedula`, `nacionalidad`, `cedula_lugar_expedicion`, `nombres`, `apellidos`, `fechaNacimiento`, `lugar_nacimiento`, `sexo`, `grupo_sanguineo`, `estado_civil`, `correo`, `cargo_id`, `nivel_vigilancia_id_p`, `tipo_vigilancia_id`, `libreta`, `direccion`, `barrio`, `estudio_seguridad`, `examen_medico`, `prueba_psicotecnica`, `nivel_academico`, `nivel_vigilancia`, `fecha_curso`, `nit_escuela`, `salud`, `pension`, `banco_nombre`, `numero_cuenta`, `coop_nombre`, `coop_fecha`, `coop_nit`, `cnsc`, `fecha_acre_super`, `acta_consejo`, `fecha_aceptacion`, `psicofisico`, `fecha_examen_psicofisico`, `carnet_supervigilancia_idcarne`, `persona_id`, `id_cargo`, `fecha_ingreso`, `empresa_idempresa`, `area_empresa_idarea_emp`, `cargo_empreso_idcargo`, `puesto_idpuesto` FROM `todo_view` WHERE `id` ='$i'";
+            $sql = "SELECT `id`, `cedula`, `nacionalidad`, `cedula_lugar_expedicion`, `nombres`, `apellidos`, `fechaNacimiento`, `lugar_nacimiento`, `sexo`, `grupo_sanguineo`, `estado_civil`, `correo`, `cargo_id`, `nivel_vigilancia_id`, `tipo_vigilancia_id`, `libreta`, `direccion`, `barrio`, `estudio_seguridad`, `examen_medico`, `prueba_psicotecnica`, `nivel_academico`, `nivel_vigilancia`, `fecha_curso`, `nit_escuela`, `salud`, `pension`, `banco_nombre`, `numero_cuenta`, `coop_nombre`, `coop_fecha`, `coop_nit`, `cnsc`, `fecha_acre_super`, `acta_consejo`, `fecha_aceptacion`, `psicofisico`, `fecha_examen_psicofisico`, `carnet_supervigilancia_idcarne`, `persona_id`, `id_cargo`, `fecha_ingreso`, `empresa_idempresa`, `area_empresa_idarea_emp`, `cargo_empreso_idcargo`, `puesto_idpuesto` FROM `todo_view` WHERE `id` ='$i'";
             $data = $this->ejecutarConsulta($sql);
             for ($i = 0; $i < count($data); $i++) {
                 return
@@ -782,8 +782,9 @@ AND table_schema = 'talento_humano';";
   `fecha_aceptacion`, `psicofisico`,`fecha_examen_psicofisico`, `carnet_supervigilancia_idcarne`,
   `id_cargo`,`fecha_ingreso`,`empresa_idempresa`, `nombre_empresa`,`area_empresa_idarea_emp`,
    `nom_area`,`cargo_empreso_idcargo`, `nom_cargo`,`Empresa_p_idEmpresa_p`, `Empresa_p_nombre`,
-   `puesto_idpuesto`, `puesto_nombre`, `edad` FROM `todo_view2` WHERE `id` ='$i'";
+   `puesto_idpuesto`, `puesto_nombre` FROM `todo_view2` WHERE `id` ='$i'";
             $data = $this->ejecutarConsulta($sql);
+
             for ($i = 0; $i < count($data); $i++) {
                 return
                         array(
@@ -796,13 +797,13 @@ AND table_schema = 'talento_humano';";
                                 'apellidos' => $data[$i]['apellidos'],
                                 'fechaNacimiento' => $data[$i]['fechaNacimiento'],
                                 'lugar_nacimiento' => $data[$i]['lugar_nacimiento'],
-                                'edad' => $data[$i]['edad'],
+                                'edad' => $this->calcularEdad($data[$i]['fechaNacimiento']),
                                 'sexo' => $data[$i]['sexo'],
                                 'grupo_sanguineo' => $data[$i]['grupo_sanguineo'],
                                 'estado_civil' => $data[$i]['estado_civil'],
                                 'correo' => $data[$i]['correo'],
                                 'cargo_id' => $data[$i]['cargo_id'],
-                                'nivel_vigilancia_id_p' => $data[$i]['nivel_vigilancia_id_p'],
+                                'nivel_vigilancia_id' => $data[$i]['nivel_vigilancia_id_p'],
                                 'tipo_vigilancia_id' => $data[$i]['tipo_vigilancia_id'],
                                 'libreta' => $data[$i]['libreta']
                             ),
@@ -858,6 +859,14 @@ AND table_schema = 'talento_humano';";
             throw new Exception('Primary key is null');
             return null;
         }
+    }
+
+
+    public function calcularEdad($fechaNacimiento){
+        $datetime1 = new DateTime();
+        $datetime2 = new DateTime($fechaNacimiento);
+        $interval = $datetime1->diff($datetime2);
+        return $interval->format('%y');
     }
 
     public function select_area_empresa($area_empresa) {
