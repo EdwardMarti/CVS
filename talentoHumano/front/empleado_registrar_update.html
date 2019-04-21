@@ -1,4 +1,3 @@
-
              <div class="tabs-container" style="color: black">
                  <ul class="nav nav-tabs" role="tablist">
                      <li><a class="nav-link active" id="1"  href="#tab-1" onclick="cambiarTab('tab-1')">DATOS PERSONALES</a></li>
@@ -98,10 +97,7 @@
     <option value="-1">SELECCIONE</option>
                                     </select>                              
                                 </div>
-                                  <div class="form-group">
-                                    <label for="Inputlugar_nacimiento">Edad</label>
-                                    <input type="text" name="lugar_nacimiento" class="form-control" id="Inputlugar_nacimiento" placeholder="lugar_nacimiento"  >
-                                </div>
+                            
                                  <div class="form-group">
                                     <label for="Inputcorreo">Correo</label>
                                     <input type="text" name="correo" class="form-control" id="Inputcorreo" placeholder="correo">
@@ -170,9 +166,8 @@
 
                         <table  class="table table-striped">
                             <thead>
-                                <tr>
-                                  
-                                  <th style="background-color: #ffca2e">#</th>
+                                <tr>                                 
+                                  <th style="background-color: #ffca2e">Contador</th>
                                   <th style="background-color: #ffca2e">Nombre y apellidos</th>
                                   <th style="background-color: #ffca2e"># Celular</th>
                                   <th style="background-color: #ffca2e">Parentesco</th>
@@ -895,6 +890,7 @@ function showTab(n) { //MUESTRA EL NOMBRE EN LE BOTON
         });
       }
 
+      
       function agregarFamiliar(){
          $.get('../../../generales/back/controller/tipo_familiar/Tipo_familiarList.php',function(depa){
           var mySelect=document.getElementById("tipoParen");
@@ -909,6 +905,8 @@ function showTab(n) { //MUESTRA EL NOMBRE EN LE BOTON
       }
 
       var numFamiliares = 0;
+      //f1: {nombre: "gtf", celular: "434", parentesco: "2"}
+      var MISFAMILIARESNUEVOS = {};
       function cuerpoFamiliar(){
         tr = document.createElement("tr");
         numFamiliares++;
@@ -917,9 +915,15 @@ function showTab(n) { //MUESTRA EL NOMBRE EN LE BOTON
           $('#nombreParen').val(),
           $('#celularParen').val(),
           $('#tipoParen').val()
-          ]
+          ];
+
+          fam = "f"+numFamiliares;
+          au = {"nombre":$('#nombreParen').val(),"celular": $('#celularParen').val(),"parentesco":$('#tipoParen').val()};
+          MISFAMILIARESNUEVOS["f"+numFamiliares] = au;
+
           document.getElementById("familiaressss").reset();
           document.getElementById("cuerpoFamiliar").appendChild(llenarTR(tr,ele));
+          
       }
 
    
@@ -989,7 +993,8 @@ function showTab(n) { //MUESTRA EL NOMBRE EN LE BOTON
                 'salud':salud,
              //   'cargo':cargo,
                 'celular':celular,
-                'familiares':familiares
+                'familiares':familiares,
+                'familiaresnuevos':MISFAMILIARESNUEVOS
             }
         };
         
@@ -1139,10 +1144,12 @@ function showTab(n) { //MUESTRA EL NOMBRE EN LE BOTON
         f = "";
         $.post('../back/controller/'+entidad+'/'+entidad.charAt(0).toUpperCase()+entidad.slice(1)+'ListXID.php',
               {'idPersona':idPersona},function(data){
-                  console.log(data);
+                 // console.log(data);
                 if(entidad === 'familiar'){
-                    console.log(data);
-                     setDatosFamiliares(form,JSON.parse(data));
+                   // console.log(data);
+                     dota = JSON.parse(data);
+                    if(dota[0].msg != "vacio")
+                     setDatosFamiliares(form,dota);
                 }else{
                     setDatos(form,JSON.parse(data)[1])
                 }                                           

@@ -4,7 +4,8 @@
 	$array_entidades = $_POST['entidades'];
 
     $fami = $_POST['entidades']['familiares'];
-	$registrador = new ActualizarTodo(filtrar($array_entidades),$fami);
+    $fami_Nuevos = $_POST['entidades']['familiaresnuevos'];
+	$registrador = new ActualizarTodo(filtrar($array_entidades),$fami,$fami_Nuevos);
 	
 	echo $registrador->registrarTodo();
         
@@ -23,6 +24,6 @@
             for ($entidad = 0; $entidad < count($algo); $entidad++) {
                 $miarray2[$algo[$entidad]['name']]=$algo[$entidad]['value'];
             }   
-            return $miarray2;
+            return $miarray2; 
         }
     

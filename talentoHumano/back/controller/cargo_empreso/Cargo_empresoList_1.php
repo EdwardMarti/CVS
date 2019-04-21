@@ -12,15 +12,15 @@
 
 include_once realpath('../../facade/Cargo_empresoFacade.php');
 $empresa = $_GET['empresa'];
+//$empresa = '1';
+//var_dump($empresa);
 $list=Cargo_empresoFacade::listCargoXArea($empresa);
 //$list=Cargo_empresoFacade::listAll();
 //var_dump($list);
 $rta="";
 foreach ($list as $obj => $Cargo_empreso) {
     
-//    var_dump($Cargo_empreso->getarea_empresa_idarea_emp());
-    
-    
+   
 	$rta.="{
  	    \"idcargo\":\"{$Cargo_empreso->getidcargo()}\",
 	    \"nom_cargo\":\"{$Cargo_empreso->getnom_cargo()}\",

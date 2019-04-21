@@ -20,8 +20,10 @@ include substr(getcwd(), 0, strlen(getcwd())-10).'sql/SqlQuery.php';
 	} 
 
 
-  	public function actualizarTodo($todo){ 
+  	public function actualizarTodo($todo,$mis_Fami,$famiNuevos){ 
   		try {  
+
+  			$persona_id = $todo[2]->getPersona_id();
 	      $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	      $this->db->beginTransaction();
 	      foreach ($todo as $keys => $value) {
@@ -32,6 +34,39 @@ include substr(getcwd(), 0, strlen(getcwd())-10).'sql/SqlQuery.php';
 			}
 			$sentencia->execute(); 
 	      }
+
+	      //Actualiza familiares
+	      //Perdon por no implementar esto, me falta llevarme el id de la persona hacia la vista para actualizar	  
+	      
+	      //Inserta familiares
+
+	        foreach ($famiNuevos as $keyss => $valor) {
+	        	$nombre=  $valor['nombre'];
+	        	$parentesco = $valor['parentesco'];
+	        	$celular = $valor['celular'];
+
+	      	$sql = "INSERT INTO `familiar`(`nombre`, `parentesco`, `persona_id`) 
+	      		VALUES ('$nombre','$parentesco','$persona_id'";
+
+	      	$sentencia=$this->db->prepare($sql);
+	      	$sentencia->execute(); 
+	      	$familiar_id = $this->db->lastInsertId();
+
+	      	$sql = "INSERT INTO `celular`(`numero`) VALUES ('$celular')";
+
+	      	$sentencia=$this->db->prepare($sql);
+	      	$sentencia->execute(); 
+	      	$celular_id = $this->db->lastInsertId();
+
+
+	      	$sql = "INSERT INTO `familiar_has_celular`(`familiar_id`, `celular_id`) VALUES ($familiar_id,$celular_id)";
+
+	      	$sentencia=$this->db->prepare($sql);
+	      	$sentencia->execute(); 
+
+		
+	      }
+
 	      $this->db->commit(); 
 	      return 1;
 	    } catch (Exception $e) {

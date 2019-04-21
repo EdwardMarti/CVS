@@ -13,7 +13,7 @@ class SqlQuery extends DML {
     $nom = implode(", ",array_keys($col));
     $val = "'".implode("', '",$col)."'";
     $sql .= " (".$nom.") ".DML::$VALUES." (".$val.")";
-    return $sql;
+    return $sql; 
   }
 
 

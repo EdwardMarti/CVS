@@ -688,8 +688,8 @@
      function getFamiliares(){
       fam = $('#cuerpoFamiliar').children('tr');
       arr = {};
-      for (var i = 0; i < fam.length; i++) {
-        ind = i + 1;
+      for (var i = 2; i < fam.length; i++) {
+        ind = i;
         arr["f"+ind] = filtrarTR(fam[i]);
       }
       return arr;

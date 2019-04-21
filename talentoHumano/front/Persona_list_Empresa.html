@@ -1530,8 +1530,8 @@
             
  function mostrarCargo(idp,cargo) {
               // console.log(idp);
-              
-              alert(idp+" "+cargo);
+              SUPER_GLOBAL=idp;
+              //alert(idp+"- "+cargo);
              cargo_RegistrarTodo();
               
            
@@ -1764,9 +1764,9 @@ function showTab(n) { //MUESTRA EL NOMBRE EN LE BOTON
       $(document).ready(function() {
         cargarSelects();
        //   cargarEmpresas('Inputempresa_idempresa');
-        cargarPersona_updade(SUPER_GLOBAL);
+        //cargarPersona_updade(SUPER_GLOBAL);
  
- console.log("scae el valor"+document.getElementById("Inputempresa_idempresa"));
+ //console.log("scae el valor"+document.getElementById("Inputempresa_idempresa"));
       });
       
       
@@ -2004,8 +2004,9 @@ function showTab(n) { //MUESTRA EL NOMBRE EN LE BOTON
                   //console.log(data);
                 if(entidad === 'familiar'){
                     //console.log(data);
-                    
-                     setDatosFamiliares(form,JSON.parse(data));
+                    dota = JSON.parse(data);
+                    if(dota[0].msg != "vacio")
+                     setDatosFamiliares(form,dota);
                 }else{
                     setDatos(form,JSON.parse(data)[1])
                 }                                           
@@ -2027,6 +2028,7 @@ function showTab(n) { //MUESTRA EL NOMBRE EN LE BOTON
       function setDatosFamiliares(idFormulario,datos){               
         nf = 0;
         document.getElementById(idFormulario).innerHTML=' ';
+        console.log("limpio");
         for (var i = 1; i < datos.length; i++) {
             tr = document.createElement("tr");
             nf++ ;

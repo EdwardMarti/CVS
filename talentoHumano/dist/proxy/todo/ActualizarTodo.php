@@ -19,10 +19,12 @@ class ActualizarTodo {
 
     private $array_TH;
     private $mis_Familiares;
+    private $famiNuevos;
 
-    function __construct($array_TH, $mis_Fami) {
+    function __construct($array_TH, $mis_Fami, $famiNuevos) {
         $this->array_TH = $array_TH;
         $this->mis_Familiares = $mis_Fami;
+        $this->famiNuevos = $famiNuevos;
     }
 
     function registrarTodo() {
@@ -77,8 +79,10 @@ class ActualizarTodo {
         //echo 'Start';
         //Inserto todo ese mierdero
         $todo = new TodoController(); 
-        $rta = $todo->actualizarTodo($todoE);   
-        echo "Start \n".$rta;
+        $rta = $todo->actualizarTodo($todoE,
+                                    $this->mis_Familiares,
+                                    $this->famiNuevos);   
+        echo $rta;
        /* if($rta > 0){
             $msg="{\"msg\":\"Registro exitoso\"}";
         }else{
