@@ -46,7 +46,8 @@ include substr(getcwd(), 0, strlen(getcwd())-10).'sql/SqlQuery.php';
 	        	$celular = $valor['celular'];
 
 	      	$sql = "INSERT INTO `familiar`(`nombre`, `parentesco`, `persona_id`) 
-	      		VALUES ('$nombre','$parentesco','$persona_id'";
+	      		VALUES ('$nombre','$parentesco','$persona_id')";
+	      		//echo $sql;
 
 	      	$sentencia=$this->db->prepare($sql);
 	      	$sentencia->execute(); 
@@ -54,12 +55,15 @@ include substr(getcwd(), 0, strlen(getcwd())-10).'sql/SqlQuery.php';
 
 	      	$sql = "INSERT INTO `celular`(`numero`) VALUES ('$celular')";
 
+	      	//echo $sql;
+
 	      	$sentencia=$this->db->prepare($sql);
 	      	$sentencia->execute(); 
 	      	$celular_id = $this->db->lastInsertId();
 
 
 	      	$sql = "INSERT INTO `familiar_has_celular`(`familiar_id`, `celular_id`) VALUES ($familiar_id,$celular_id)";
+	      	//echo $sql;
 
 	      	$sentencia=$this->db->prepare($sql);
 	      	$sentencia->execute(); 

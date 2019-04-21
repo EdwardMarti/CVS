@@ -125,6 +125,24 @@ $nombre=$puesto->getNombre();
       return null;
       }
   }
+  public function listAllxSucursal($empresa){
+      $lista = array();
+      try {
+          $sql ="SELECT `idpuesto`, `nombre` FROM `puesto` WHERE `empresa_idempresa`=$empresa";
+          $data = $this->ejecutarConsulta($sql);
+          for ($i=0; $i < count($data) ; $i++) {
+              $puesto= new Puesto();
+          $puesto->setIdpuesto($data[$i]['idpuesto']);
+          $puesto->setNombre($data[$i]['nombre']);
+
+          array_push($lista,$puesto);
+          }
+      return $lista;
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      return null;
+      }
+  }
 
       public function insertarConsulta($sql){
           $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

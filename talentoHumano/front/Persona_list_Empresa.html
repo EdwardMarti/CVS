@@ -1470,6 +1470,7 @@
   <script>
             var mimodal = null;
             var SUPER_GLOBAL;
+            var SUPER_GLOBAL_IDCARGO=-1;
             function mostrarActualizar(id, nombre) {
                 
                 empleado_update(id);
@@ -1530,7 +1531,9 @@
             
  function mostrarCargo(idp,cargo) {
               // console.log(idp);
+                    alert(idp+"- "+cargo);
               SUPER_GLOBAL=idp;
+              SUPER_GLOBAL_IDCARGO=cargo;
               //alert(idp+"- "+cargo);
              cargo_RegistrarTodo();
               

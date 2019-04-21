@@ -209,21 +209,10 @@
                       
 
                 <li>
-                    <a style="display: none" onclick="empleado_Listar2();"><i class="fa fa-th-large"></i> <span class="nav-label">Empleado</span>  </a>
+                    <a onclick="empleado_Listar2();"><i class="fa fa-th-large"></i> <span class="nav-label">Empleado</span>  </a>
                 </li>
                 
-                <li>
-                    <a ><i class="fa fa-th-large"></i> <span class="nav-label">Empleado</span> <span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li>
-                            <a onclick="empleado_Listar2()">Empleado</a>
-                        </li>
-                        <li>
-                            <a onclick="act_Cargo()">Actualizar Cargo</a>
-                        </li>
-                       
-                    </ul>
-                </li>
+         
 
                      <li>
                     <a ><i class="fa fa-th-large"></i> <span class="nav-label">Adm Empresa</span> <span class="fa arrow"></span></a>

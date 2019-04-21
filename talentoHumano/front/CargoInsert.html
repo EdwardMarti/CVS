@@ -12,6 +12,7 @@
                   <form role="form" id="CargoInsert">
                       
                          <div class="row">
+                         
                                 <div class="col-lg-4">
                       <div class="form-group">
                           <label for="Inputfecha_ingreso">fecha_ingreso</label>
@@ -50,7 +51,7 @@
                              <div class="col-lg-4"> 
                                 <div class="form-group">
                 <label for="Inputcargo_empreso_idcargo">cargo</label>
-                <select name="cargo_empreso_idcargo" class="form-control" id="Inputcargo_empreso_idcargo" onchange="listarPuesto(this.value);">
+                <select name="cargo_empreso_idcargo" class="form-control" id="Inputcargo_empreso_idcargo" >
                     <option>SELECCIONE</option>
                 </select>
              </div>
@@ -65,26 +66,32 @@
              </div>
                               
                     </div>             
-                               
+                             <div class="col-lg-4"> 
+                 <div class="form-group">
+                          <label for="Inputpersona_id">persona_id</label>
+                          <input type="text" name="persona_id" class="form-control" id="Inputpersona_id" placeholder="puesto_idpuesto">
+                       </div>        
+                    </div>             
+                                  <div class="col-lg-4">
+                                   <div class="form-group">
+                          <label for="Inputid">id</label>
+                          <input type="text" name="id" class="form-control" id="Inputid" placeholder="id" required>
+                       </div>
+                             </div> 
                          
                              </div>
+                      <button> Registrar</button>
+                      <button> Actualizar</button>
+                        <a href="javascript:preCargoInsert('CargoInsert')" class="btn btn-warning">Registrar</a>
+                   </form>
+                      
                              </div>
            
                 
-                 
-                      <div class="form-group">
-                          <label for="Inputpuesto_idpuesto">puesto_idpuesto</label>
-                          <input type="text" name="puesto_idpuesto" class="form-control" id="Inputpuesto_idpuesto" placeholder="puesto_idpuesto">
-                       </div>
-                      <div class="form-group">
-                          <label for="Inputpersona_id">persona_id</label>
-                          <input type="text" name="persona_id" class="form-control" id="Inputpersona_id" placeholder="puesto_idpuesto">
-                       </div>
-                        <a href="javascript:preCargoInsert('CargoInsert')" class="btn btn-warning">Registrar</a>
-                   </form>
+                
                </div><!-- panel-body -->
           </div> <!-- panel -->
-      </div>
+   
 
              <script>
                 
@@ -94,7 +101,8 @@
       
          
             //    var a=''+id;
-        mySelect=document.getElementById("Inputpersona_id").value=SUPER_GLOBAL;
+        document.getElementById("Inputpersona_id").value=SUPER_GLOBAL;
+        document.getElementById("Inputid").value=SUPER_GLOBAL_IDCARGO;
       
           $.get('../back/controller/empresa_p/Empresa_pList.php',function(depa){
           var mySelect=document.getElementById("InputidEmpresa_p");
@@ -112,8 +120,9 @@
                 
         </script>
                <script>
+           
    function ListarSucursales(empresa){ 
-         
+           
         $.get('../back/controller/empresa/EmpresaList_sucursal.php',{'empresa':empresa},function(depa){
           var mySelect=document.getElementById("Inputempresa_idempresa");
           removeAllChildren(mySelect);
@@ -124,12 +133,12 @@
             }  
           
         });
-      
+    
       }
       
    function cargarAreas(empresa){      
         $.get('../back/controller/area_empresa/Area_empresaList.php',{'empresa':empresa},function(depa){
-          var mySelect=document.getElementById("Inputarea_empresa_idarea_emp1");
+           var mySelect=document.getElementById("Inputarea_empresa_idarea_emp1");
           removeAllChildren(mySelect);
                mySelect.appendChild(createOPTION(-1,'SELECCIONE'));
           depa = JSON.parse(depa);         
@@ -138,6 +147,7 @@
             }  
           
         });
+          listarPuesto(empresa);
       }
    function listarCargos(empresa){ 
      
@@ -153,14 +163,14 @@
         });
       }
    function listarPuesto(empresa){ 
-     
-        $.get('../back/controller/cargo_empreso/Cargo_empresoList_1.php',{'empresa':empresa},function(depa){
+    
+        $.get('../back/controller/puesto/PuestoList_1.php',{'empresa':empresa},function(depa){
           var mySelect=document.getElementById("Inputpuesto_idpuesto");
           removeAllChildren(mySelect);
-               mySelect.appendChild(createOPTION(-1,'SELECCIONE'));
+            //   mySelect.appendChild(createOPTION(-1,'SELECCIONE'));
           depa = JSON.parse(depa);         
          for (var i = 1 ; i < depa.length; i++) {
-              mySelect.appendChild(createOPTION(depa[i].idcargo,depa[i].nom_cargo));
+              mySelect.appendChild(createOPTION(depa[i].idpuesto,depa[i].nombre));
             }  
           
         });

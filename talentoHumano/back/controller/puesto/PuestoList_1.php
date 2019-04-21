@@ -9,7 +9,7 @@
 include_once realpath('../../facade/PuestoFacade.php');
 $empresa = $_GET['empresa'];
 
-$list=PuestoFacade::listAll();
+$list=PuestoFacade::listAllxSucursal($empresa);
 $rta="";
 foreach ($list as $obj => $Puesto) {	
 	$rta.="{

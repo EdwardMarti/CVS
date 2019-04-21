@@ -12,7 +12,7 @@
         function filtrar($entidades) {
             $miArray = array();
             foreach ($entidades as  $nombre => $entidad){
-                if($nombre != 'familiares'){
+                if($nombre != 'familiares' or $nombre != 'familiaresnuevos'){
                     $miArray[$nombre] = construir($entidad);
                 }
             }              

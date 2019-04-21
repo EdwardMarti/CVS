@@ -106,6 +106,13 @@ class PuestoFacade {
      $puestoDao->close();
      return $result;
   }
+  public static function listAllxSucursal($empresa){
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $puestoDao =$FactoryDao->getpuestoDao(self::getDataBaseDefault());
+     $result = $puestoDao->listAllxSucursal($empresa);
+     $puestoDao->close();
+     return $result;
+  }
 
 
 }
