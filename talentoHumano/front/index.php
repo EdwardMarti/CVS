@@ -229,6 +229,9 @@
                         <li>
                             <a onclick="cargo_Listar()">Cargo</a>
                         </li>
+                        <li>
+                            <a onclick="puesto_Listar()">Puesto</a>
+                        </li>
                     </ul>
                 </li>
               

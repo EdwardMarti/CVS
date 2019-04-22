@@ -933,6 +933,10 @@ function prePuestoList(container){
             for(var i=1; i < Object.keys(json).length; i++) {   
                 var Puesto = json[i];
                 //----------------- Para una tabla -----------------------
+             
+                Puesto.updateHrefB = 'mostrarActualizar("' + Puesto.idpuesto + '","' + Puesto.nombre + '");';
+                Puesto.deleteHrefB = 'mostrarEliminar("' + Puesto.idpuesto + '");';
+             
                 document.getElementById("PuestoList").appendChild(createTR(Puesto));
                 //-------- Para otras opciones ver htmlBuilder.js ---------
             }

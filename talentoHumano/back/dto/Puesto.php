@@ -12,6 +12,7 @@ class Puesto {
 
   private $idpuesto;
   private $nombre;
+  private $empresa_idempresa;
 
     /**
      * Constructor de Puesto
@@ -48,6 +49,14 @@ class Puesto {
   public function setNombre($nombre){
       $this->nombre = $nombre;
   }
+  function getEmpresa_idempresa() {
+      return $this->empresa_idempresa;
+  }
+
+  function setEmpresa_idempresa($empresa_idempresa) {
+      $this->empresa_idempresa = $empresa_idempresa;
+  }
+
 
 
 }

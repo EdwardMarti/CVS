@@ -34,10 +34,11 @@ class PuestoFacade {
    * @param idpuesto
    * @param nombre
    */
-  public static function insert( $idpuesto,  $nombre){
+  public static function insert( $idpuesto,  $nombre,$empresa_idempresa){
       $puesto = new Puesto();
       $puesto->setIdpuesto($idpuesto); 
       $puesto->setNombre($nombre); 
+      $puesto->setEmpresa_idempresa($empresa_idempresa); 
 
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $puestoDao =$FactoryDao->getpuestoDao(self::getDataBaseDefault());

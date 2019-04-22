@@ -225,6 +225,28 @@ function cargo_RegistrarTodo() {
     ajax(url, datos, rta);
 
 }
+function puesto_Listar() {
+    var url = "PuestoList.html";
+    var datos = {};
+    var rta = "#mostrarcontenido";
+    ajax(url, datos, rta);
+//enviar("",'../back/controller/puesto/PuestoList.php?empresa=' + empresa,postPuestoList); 
+}
+function puesto_Listar_Tabla(empresa) {
+    var url = "PuestoList_Tabla.html";
+    var datos = {};
+    var rta = "#mostrarcontenido2";
+    ajax(url, datos, rta);
+enviar("",'../back/controller/puesto/PuestoList.php?empresa=' + empresa,postPuestoList); 
+}
+
+function puesto_Registrar() {
+    var url = "PuestoInsert.html";
+    var datos = {};
+    var rta = "#mostrarcontenido2";
+    ajax(url, datos, rta);
+
+}
 
 //</editor-fold>
 

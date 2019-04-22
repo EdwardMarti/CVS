@@ -30,10 +30,11 @@ private $cn;
   public function insert($puesto){
       $idpuesto=$puesto->getIdpuesto();
 $nombre=$puesto->getNombre();
+$empresa_idempresa=$puesto->getEmpresa_idempresa();
 
       try {
-          $sql= "INSERT INTO `puesto`( `idpuesto`, `nombre`)"
-          ."VALUES ('$idpuesto','$nombre')";
+          $sql= "INSERT INTO `puesto`( `idpuesto`, `nombre`, `empresa_idempresa`)"
+          ."VALUES ('$idpuesto','$nombre','$empresa_idempresa')";
           return $this->insertarConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');

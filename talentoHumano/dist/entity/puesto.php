@@ -8,6 +8,9 @@
  public function getIdpuesto(){ 
  return $this->COLUMNAS['idpuesto']; 
  } 
+public function getEmpresa_idempresa(){ 
+ return $this->COLUMNAS['empresa_idempresa']; 
+ } 
 public function getNombre(){ 
  return $this->COLUMNAS['nombre']; 
  } 
@@ -24,6 +27,10 @@ public function getPK(){
  public function setIdpuesto($idpuesto){ 
  if(is_null($idpuesto)) $idpuesto = 'null'; 
  $this->COLUMNAS['idpuesto'] = $idpuesto; 
+ } 
+public function setEmpresa_idempresa($empresa_idempresa){ 
+ if(is_null($empresa_idempresa)) $empresa_idempresa = 'null'; 
+ $this->COLUMNAS['empresa_idempresa'] = $empresa_idempresa; 
  } 
 public function setNombre($nombre){ 
  if(is_null($nombre)) $nombre = 'null'; 
