@@ -930,7 +930,7 @@ function prePuestoList(container){
          var json=JSON.parse(result);
          if(json[0].msg=="exito"){
 
-            for(var i=1; i < Object.keys(json).length; i++) {   
+            for(var i=2; i < Object.keys(json).length; i++) {   
                 var Puesto = json[i];
                 //----------------- Para una tabla -----------------------
              

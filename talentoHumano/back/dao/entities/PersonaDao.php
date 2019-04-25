@@ -860,6 +860,29 @@ AND table_schema = 'talento_humano';";
             return null;
         }
     }
+    
+    public function select_actCargo($i) {
+     $lista = array();
+
+        try {
+            $sql = "select `id`,`cargo_id`,`empresa_idempresa` FROM `todo_view2` WHERE `id` ='$i'";
+            $data = $this->ejecutarConsulta($sql);
+          
+            for ($i = 0; $i < count($data); $i++) {
+                $persona = new Persona();
+                $persona->setId($data[$i]['id']);
+                $persona->setCedula($data[$i]['cargo_id']);
+                $persona->setNacionalidad($data[$i]['empresa_idempresa']);
+               
+
+                array_push($lista, $persona);
+            }
+            return $lista;
+        } catch (SQLException $e) {
+            throw new Exception('Primary key is null');
+            return null;
+        }
+    }
 
 
     public function calcularEdad($fechaNacimiento){

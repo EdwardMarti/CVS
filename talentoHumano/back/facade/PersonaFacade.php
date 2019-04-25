@@ -184,6 +184,13 @@ class PersonaFacade {
      $personaDao->close();
      return $result;
   }
+  public static function select_actCargo($emp){
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $personaDao =$FactoryDao->getpersonaDao(self::getDataBaseDefault());
+     $result = $personaDao->select_actCargo($emp);
+     $personaDao->close();
+     return $result;
+  }
   public static function listAll_tabla(){
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $personaDao =$FactoryDao->getpersonaDao(self::getDataBaseDefault());

@@ -8,7 +8,67 @@
       <div>
           <div class="panel panel-default">
               <div align=center class="panel-heading"><h3 class="panel-title">Registrar cargo</h3></div>
-              <div align=center class="panel-body">
+              <div class="col-lg-12">
+                    <div class="tabs-container">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li><a class="nav-link active" data-toggle="tab" href="#tab-1"> Actualizar</a></li>
+                            <li><a class="nav-link" data-toggle="tab" href="#tab-2">Trasladar</a></li>
+                        </ul>
+                        <div class="tab-content">
+   <!--***************************************** Panel 1 **********************************************-->                         
+                            <div role="tabpanel" id="tab-1" class="tab-pane active">
+                                <div class="panel-body">
+     <div align=center class="panel-body">
+                  <form role="form" id="CargoInsert">
+                      
+                         <div class="row">
+                         
+                                <div class="col-lg-4">
+                      <div class="form-group">
+                          <label for="Inputfecha_ingreso">fecha_ingreso</label>
+                          <input type="date" name="fecha_ingreso" class="form-control" id="Inputfecha_ingreso" placeholder="fecha_ingreso">
+                       </div>
+                  </div>
+                 
+                       
+                         
+                                    
+                             <div class="col-lg-4"> 
+                                <div class="form-group">
+                <label for="Inputpuesto_idpuesto">Puestos</label>
+                <select name="puesto_idpuesto" class="form-control" id="Inputpuesto_idpuesto" >
+                    <option>SELECCIONE</option>
+                </select>
+             </div>
+                              
+                    </div>             
+                             <div class="col-lg-4"> 
+                 <div class="form-group">
+                          <label for="Inputpersona_id">persona_id</label>
+                          <input type="text" name="persona_id" class="form-control" id="Inputpersona_id" placeholder="puesto_idpuesto">
+                       </div>        
+                    </div>             
+                                  <div class="col-lg-4">
+                                   <div class="form-group">
+                          <label for="Inputid">id</label>
+                          <input type="text" name="id" class="form-control" id="Inputid" placeholder="id" required>
+                       </div>
+                             </div> 
+                         
+                             </div>
+                        <button type="button" id="btn-ingresar"  class="btn btn-primary" onclick="registrar()">Registrar</button>
+                          <button type="button" id="btn-ingresar"  class="btn btn-primary" onclick="registrar()">Actualizar</button>
+                      </form>
+                      
+                             </div>
+           
+                                </div>
+                            </div>
+                            
+   <!--***************************************** Inicio Panel 2 **********************************************-->                         
+                            <div role="tabpanel" id="tab-2" class="tab-pane">
+                                <div class="panel-body">
+                                <div align=center class="panel-body">
                   <form role="form" id="CargoInsert">
                       
                          <div class="row">
@@ -86,6 +146,15 @@
                       
                              </div>
            
+                                </div>
+                            </div>
+   <!--***************************************** Fin Panel 2 **********************************************-->                         
+                        </div>
+
+
+                    </div>
+                </div>
+         
                 
                 
                </div><!-- panel-body -->
@@ -93,7 +162,7 @@
    
 
              <script>
-                
+                   var mySelect2;
                                     $(document).ready(function () {
                                                    
                            
@@ -102,6 +171,7 @@
             //    var a=''+id;
         document.getElementById("Inputpersona_id").value=SUPER_GLOBAL;
         document.getElementById("Inputid").value=SUPER_GLOBAL_IDCARGO;
+        mySelect2=document.getElementById("Inputempresa_idempresa_p").value;
       
           $.get('../back/controller/empresa_p/Empresa_pList.php',function(depa){
           var mySelect=document.getElementById("InputidEmpresa_p");

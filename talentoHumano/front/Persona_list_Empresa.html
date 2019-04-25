@@ -1502,8 +1502,7 @@
                 $("#InputArea2").val(b2);
                $('#myModal5').modal({show: true});
 
-             
-               //  alert('elim'+id,nombre);
+    
             }
             
  function mostrarTodo(idp) {
@@ -1519,8 +1518,7 @@
                $('#myModal5').addClass(' data-backdrop="static" data-keyboard="false"');
                $('#myModal5').modal({show: true});
 
-             //  enableContainer(modalmenu1);
-               //  alert('elim'+id,nombre);
+          
             }
             var IDSUBIRARCHIVOS;
  function mostrarSubirFile(idp,cedula) {
@@ -1532,25 +1530,33 @@
                // var b2=''+nombre2;
               empleado_archivos(cedula);
          
-             
-               //  alert('elim'+id,nombre);
+
             }
             
  function mostrarCargo(idp,cargo) {
-              // console.log(idp);
-                    alert(idp+"- "+cargo);
-              SUPER_GLOBAL=idp;
-              SUPER_GLOBAL_IDCARGO=cargo;
-              //alert(idp+"- "+cargo);
-             cargo_RegistrarTodo();
-              
-           
-                  //    var a1=''+id2;
-               // var b2=''+nombre2;
-             
          
+             // SUPER_GLOBAL=idp;
+          //    SUPER_GLOBAL_IDCARGO=cargo;
+        
+           //  cargo_RegistrarTodo();
              
-               //  alert('elim'+id,nombre);
+                 var url1 = "../back/controller/cargo_empreso/Cargo_empresoInsert.php";
+        $.ajax({                        
+           type: "POST",                 
+           url: url1,                     
+           data: $("#Cargo_empresoInsert").serialize(), 
+                 
+          // success: function(data) 
+         
+          // {
+             //  if(data=='true'){
+              //   aceptaraREA();
+              // }
+                          
+          // }
+       });
+
+      
             }
         </script>  
         
