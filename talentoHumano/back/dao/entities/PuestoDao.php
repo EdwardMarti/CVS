@@ -144,6 +144,43 @@ $nombre=$puesto->getNombre();
       return null;
       }
   }
+  
+   public function listAllxSucursal_nombre($empresa){
+       //var_dump($empresa);
+    $id=$this->buscar_id_sucursal($empresa);
+    
+
+      $lista = array();
+      try {
+          $sql ="SELECT `idpuesto`, `nombre` FROM `puesto` WHERE `empresa_idempresa`=$id";
+          $data = $this->ejecutarConsulta($sql);
+          for ($i=0; $i < count($data) ; $i++) {
+              $puesto= new Puesto();
+          $puesto->setIdpuesto($data[$i]['idpuesto']);
+          $puesto->setNombre($data[$i]['nombre']);
+
+          array_push($lista,$puesto);
+          }
+      return $lista;
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      return null;
+      }
+  }
+  
+  
+   public function buscar_id_sucursal($puesto){
+      try {
+          $sql ="SELECT `idempresa` FROM `empresa` WHERE `nombre_empresa`='$puesto'";     
+          $data = $this->ejecutarConsulta($sql);
+          if(count($data)>0){
+              return $data[0]['idempresa'];
+          }
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      return null;
+      }
+  }
 
       public function insertarConsulta($sql){
           $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

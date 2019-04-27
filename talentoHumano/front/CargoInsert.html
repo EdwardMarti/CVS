@@ -42,22 +42,17 @@
              </div>
                               
                     </div>             
-                             <div class="col-lg-4"> 
-                 <div class="form-group">
-                          <label for="Inputpersona_id">persona_id</label>
-                          <input type="text" name="persona_id" class="form-control" id="Inputpersona_id" placeholder="puesto_idpuesto">
-                       </div>        
-                    </div>             
+                               
                                   <div class="col-lg-4">
                                    <div class="form-group">
-                          <label for="Inputid">id</label>
+                          <label for="Inputid">idcargo</label>
                           <input type="text" name="id" class="form-control" id="Inputid" placeholder="id" required>
                        </div>
                              </div> 
                          
                              </div>
                         <button type="button" id="btn-ingresar"  class="btn btn-primary" onclick="registrar()">Registrar</button>
-                          <button type="button" id="btn-ingresar"  class="btn btn-primary" onclick="registrar()">Actualizar</button>
+                   
                       </form>
                       
                              </div>
@@ -163,6 +158,7 @@
 
              <script>
                    var mySelect2;
+                  // var a;
                                     $(document).ready(function () {
                                                    
                            
@@ -170,16 +166,17 @@
          
             //    var a=''+id;
         document.getElementById("Inputpersona_id").value=SUPER_GLOBAL;
-        document.getElementById("Inputid").value=SUPER_GLOBAL_IDCARGO;
-        mySelect2=document.getElementById("Inputempresa_idempresa_p").value;
+        document.getElementById("Inputid").value=SUPER_GLOBAL_SUCURSAL;
+      //  a=SUPER_GLOBAL_IDCARGO;
+       // mySelect2=document.getElementById("Inputempresa_idempresa_p").value;
       
-          $.get('../back/controller/empresa_p/Empresa_pList.php',function(depa){
-          var mySelect=document.getElementById("InputidEmpresa_p");
+          $.get('../back/controller/puesto/PuestoList_combo.php',{'empresa':SUPER_GLOBAL_SUCURSAL},function(depa){
+          var mySelect=document.getElementById("Inputpuesto_idpuesto");
          removeAllChildren(mySelect);
              mySelect.appendChild(createOPTION(-1,'SELECCIONE'));
           depa = JSON.parse(depa);
          for (var i = 1 ; i < depa.length; i++) {
-              mySelect.appendChild(createOPTION(depa[i].idEmpresa_p,depa[i].Empresa_p_nombre));
+              mySelect.appendChild(createOPTION(depa[i].idpuesto,depa[i].nombre));
             }  
           
         });

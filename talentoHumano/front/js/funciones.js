@@ -237,7 +237,7 @@ function puesto_Listar_Tabla(empresa) {
     var datos = {};
     var rta = "#mostrarcontenido2";
     ajax(url, datos, rta);
-enviar("",'../back/controller/puesto/PuestoList.php?empresa=' + empresa,postPuestoList); 
+enviar("",'../back/controller/puesto/PuestoList_tabla.php?empresa=' + empresa,postPuestoList); 
 }
 
 function puesto_Registrar() {

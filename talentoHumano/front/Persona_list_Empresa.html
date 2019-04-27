@@ -1477,21 +1477,12 @@
   <script>
             var mimodal = null;
             var SUPER_GLOBAL;
-            var SUPER_GLOBAL_IDCARGO=-1;
+            var SUPER_GLOBAL_IDCARGO;
             function mostrarActualizar(id, nombre) {
                 
                 empleado_update(id);
                 SUPER_GLOBAL = id;
-               // cargarPersona_updade(id);
-            //    var a=''+id;
-           //     var b=''+nombre;
-           //        $("#idArea").val(a);
-           //     $("#InputArea").val(b);
-              
-           //    $('#myModal5').addClass(' data-backdrop="static" data-keyboard="false"');
-           //    $('#myModal5').modal({show: true});
-               
-             
+ 
             }
             function mostrarEliminar(id2, nombre2) {
                // console.log(id);
@@ -1533,19 +1524,15 @@
 
             }
             
- function mostrarCargo(idp,cargo) {
+ function mostrarCargo(idp,cargo,sucursal) {
          
-             // SUPER_GLOBAL=idp;
-          //    SUPER_GLOBAL_IDCARGO=cargo;
+            SUPER_GLOBAL=idp;
+            SUPER_GLOBAL_IDCARGO=cargo;
+            SUPER_GLOBAL_SUCURSAL=sucursal;
         
-           //  cargo_RegistrarTodo();
+           cargo_RegistrarTodo();
              
-                 var url1 = "../back/controller/cargo_empreso/Cargo_empresoInsert.php";
-        $.ajax({                        
-           type: "POST",                 
-           url: url1,                     
-           data: $("#Cargo_empresoInsert").serialize(), 
-                 
+               
           // success: function(data) 
          
           // {
@@ -1553,9 +1540,7 @@
               //   aceptaraREA();
               // }
                           
-          // }
-       });
-
+    
       
             }
         </script>  

@@ -831,7 +831,7 @@ function prePersonaList(container){
                 Persona.viewHrefB = 'mostrarTodo("' + Persona.id +'");';
                 Persona.updateHrefB = 'mostrarActualizar("' + Persona.id + '");';
                 Persona.deleteHrefB = 'mostrarEliminar("' + Persona.id + '");';
-                Persona.cargoHrefB = 'mostrarCargo("' + Persona.id + '","' + Persona.cargo_id + '");';
+                Persona.cargoHrefB = 'mostrarCargo("' + Persona.id + '","' + Persona.cargo_id + '","' + Persona.nivel_vigilancia_id_id + '");';
                 Persona.fileHrefB = 'mostrarSubirFile("' + Persona.id + '","' + Persona.cedula + '");';
                 document.getElementById("PersonaList").appendChild(createTR(Persona));
                 //-------- Para otras opciones ver htmlBuilder.js ---------.
