@@ -19,7 +19,8 @@
                             <div role="tabpanel" id="tab-1" class="tab-pane active">
                                 <div class="panel-body">
      <div align=center class="panel-body">
-                  <form role="form" id="CargoInsert">
+         
+                  <form role="form" id="PuestoAct">
                       
                          <div class="row">
                          
@@ -51,7 +52,7 @@
                              </div> 
                          
                              </div>
-                        <button type="button" id="btn-ingresar"  class="btn btn-primary" onclick="registrar()">Registrar</button>
+                        <button type="button" id="btn-ingresar"  class="btn btn-primary" onclick="actualizar()">Registrar</button>
                    
                       </form>
                       
@@ -166,7 +167,7 @@
          
             //    var a=''+id;
         document.getElementById("Inputpersona_id").value=SUPER_GLOBAL;
-        document.getElementById("Inputid").value=SUPER_GLOBAL_SUCURSAL;
+        document.getElementById("Inputid").value=SUPER_GLOBAL_IDCARGO;
       //  a=SUPER_GLOBAL_IDCARGO;
        // mySelect2=document.getElementById("Inputempresa_idempresa_p").value;
       
@@ -241,6 +242,27 @@
           
         });
       }
-
+      
+   function actualizar(){
+          
+        var url = "../back/controller/cargo/CargoUpdate.php";
+        $.ajax({                        
+           type: "POST",                 
+           url: url,                     
+           data: $("#PuestoAct").serialize(), 
+          
+         
+           success: function(data) 
+         
+           {
+               if(data=='true'){
+                   aceptar();
+               }
+                          
+           }
+       });
+   } 
+    
+   
         </script>
 </html>

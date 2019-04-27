@@ -57,6 +57,19 @@ class CargoFacade {
      $cargoDao->close();
      return $rtn;
   }
+  
+  public static function update_fecha( $id,  $fecha_ingreso, $puesto_idpuesto){
+      $cargo = new Cargo();
+      $cargo->setId($id); 
+      $cargo->setFecha_ingreso($fecha_ingreso); 
+      $cargo->setPuesto_idpuesto($puesto_idpuesto); 
+
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $cargoDao =$FactoryDao->getcargoDao(self::getDataBaseDefault());
+     $rtn = $cargoDao->update_fecha($cargo);
+     $cargoDao->close();
+     return $rtn;
+  }
 
   /**
    * Selecciona un objeto Cargo de la base de datos a partir de su(s) llave(s) primaria(s).

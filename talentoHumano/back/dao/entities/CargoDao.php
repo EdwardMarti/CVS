@@ -106,6 +106,18 @@ $puesto_idpuesto=$cargo->getPuesto_idpuesto()->getIdpuesto();
           throw new Exception('Primary key is null');
       }
   }
+  public function update_fecha($cargo){
+      $id=$cargo->getId();
+$fecha_ingreso=$cargo->getFecha_ingreso();
+$puesto_idpuesto=$cargo->getPuesto_idpuesto()->getIdpuesto();
+
+      try {
+          $sql= "UPDATE `cargo` SET `fecha_ingreso`='$fecha_ingreso', `puesto_idpuesto`='$puesto_idpuesto' WHERE `id`='$id' ";
+         return $this->insertarConsulta($sql);
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      }
+  }
 
     /**
      * Elimina un objeto Cargo en la base de datos.
