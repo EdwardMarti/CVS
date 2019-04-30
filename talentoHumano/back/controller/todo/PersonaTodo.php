@@ -8,7 +8,7 @@
 include_once realpath('../../facade/PersonaFacade.php');
 
 $id = $_POST['idPersona'];
-//$id = '15';
+//$id = '10';
 
 $list=PersonaFacade::listAll_select_viewP($id);
 

@@ -1015,9 +1015,83 @@ function showTab(n) { //MUESTRA EL NOMBRE EN LE BOTON
             console.log(t);
             
         $.post('../dist/proxy/todo/actualizar.php',t,function(data){
-            console.log(data);
+             var objeto_json = JSON.parse(data);
+           console.log(data);
+         //    console.log(objeto_json);
+           console.log(objeto_json[0].msg);
+          
+          if(objeto_json[0].msg=='true'){
+    
+   aceptarPersona();
+    
+}
+if(objeto_json[0].msg=='error1'){
+    errorPersona();
+}
+
         });
       }
+
+
+
+
+
+
+
+
+     function aceptarPersona(){
+    // $('#myModalcargo').modal('hide');
+       swal({
+                        title: "Registro",
+                        text: "Registro Exitoso!",
+                        type: "success",
+                       // showCancelButton: true,
+                        confirmButtonColor: "#1ab394",
+                        confirmButtonText: "Ok",
+                       // cancelButtonText: "No, cancel plx!",
+                      //   closeOnConfirm: false,
+                        closeOnCancel: false },
+                    function (isConfirm) {
+                        if (isConfirm) {
+                         
+                         empleado_Listar2();
+                             //  cargo_Listar_2(mySelect);
+                           // swal("Deleted!", "Your imaginary file has been deleted.", "success");
+                        } 
+                        else {
+                            swal("Cancelled", "Your imaginary file is safe :)", "error");
+                        }
+                    });
+   
+};
+     function errorPersona(){
+    // $('#myModalcargo').modal('hide');
+       swal({
+                        title: "Cancelled",
+                        text: "Cedula ya Registrada!",
+                        type: "error",
+                       // showCancelButton: true,
+                        confirmButtonColor: "#1ab394",
+                        confirmButtonText: "Ok",
+                       // cancelButtonText: "No, cancel plx!",
+                      //   closeOnConfirm: false,
+                        closeOnCancel: false },
+                    function (isConfirm) {
+                        if (isConfirm) {
+                         
+                         empleado_Listar2();
+                             //  cargo_Listar_2(mySelect);
+                           // swal("Deleted!", "Your imaginary file has been deleted.", "success");
+                        } 
+                        else {
+                            swal("Cancelled", "Your imaginary file is safe :)", "error");
+                        }
+                    });
+   
+};
+
+
+
 
  function actualizar_Persona(){
       

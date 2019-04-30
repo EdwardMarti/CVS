@@ -348,7 +348,7 @@
                       <div class="ibox-content">
                           
                        <div class="embed-responsive embed-responsive-16by9">
-  <iframe class="embed-responsive-item" src="http://localhost/calendario/"></iframe>
+  <iframe class="embed-responsive-item" src="http://localhost/Calendario/"></iframe>
 </div>
  
  

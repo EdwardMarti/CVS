@@ -600,9 +600,10 @@ AND table_schema = 'talento_humano';";
         $area_empresa_idarea_emp = $cargo->getArea_empresa_idarea_emp()->getIdarea_emp();
         $cargo_empreso_idcargo = $cargo->getCargo_empreso_idcargo()->getIdcargo();
         $Empresa_p_idEmpresa_p = '1';
-        //$puesto_idpuesto=$cargo->getPuesto_idpuesto()->getIdpuesto();
-        $sql = "INSERT INTO `cargo`(`fecha_ingreso`, `empresa_idempresa`, `area_empresa_idarea_emp`, `cargo_empreso_idcargo`,`Empresa_p_idEmpresa_p`)"
-                . "VALUES ('$fecha_ingreso',$empresa_idempresa,$area_empresa_idarea_emp,$cargo_empreso_idcargo,$Empresa_p_idEmpresa_p)";
+        $puesto_idpuesto=$cargo->getPuesto_idpuesto()->getIdpuesto();
+        $sql = "INSERT INTO `cargo`(`fecha_ingreso`, `empresa_idempresa`, `area_empresa_idarea_emp`, `cargo_empreso_idcargo`,`puesto_idpuesto`,`Empresa_p_idEmpresa_p`)"
+     . "VALUES ('$fecha_ingreso',$empresa_idempresa,$area_empresa_idarea_emp,$cargo_empreso_idcargo,$puesto_idpuesto,$Empresa_p_idEmpresa_p)";
+       
         return $sql;
     }
     

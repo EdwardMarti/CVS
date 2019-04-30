@@ -3,7 +3,8 @@
 <!--              -------Creado por-------               -->
 <!--             \(°u° )/ Anarchy \( °u°)/               -->
 <!--              ------------------------               -->
-
+         <!-- Sweet Alert -->
+    <link href="css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
 <!--//    Has encontrado la frase #1024 ¡Felicidades! Ahora tu proyecto funcionará a la primera  \\                  -->
       <div>
           <div class="panel panel-default">
@@ -20,34 +21,31 @@
                                 <div class="panel-body">
      <div align=center class="panel-body">
          
-                  <form role="form" id="PuestoAct">
+                  <form role="form" id="PuestoActu">
                       
                          <div class="row">
                          
-                                <div class="col-lg-4">
+                                <div class="col-lg-6">
                       <div class="form-group">
-                          <label for="Inputfecha_ingreso">fecha_ingreso</label>
-                          <input type="date" name="fecha_ingreso" class="form-control" id="Inputfecha_ingreso" placeholder="fecha_ingreso">
+                          <label for="Inputfecha_ingresoAct">fecha_ingreso</label>
+                          <input type="date" name="fecha_ingresoAct" class="form-control" id="Inputfecha_ingresoAct" placeholder="fecha_ingreso">
                        </div>
                   </div>
-                 
-                       
-                         
-                                    
-                             <div class="col-lg-4"> 
+     
+                             <div class="col-lg-6"> 
                                 <div class="form-group">
-                <label for="Inputpuesto_idpuesto">Puestos</label>
-                <select name="puesto_idpuesto" class="form-control" id="Inputpuesto_idpuesto" >
+                <label for="Inputpuesto_idpuestoAct">Puestos</label>
+                <select name="puesto_idpuestoAct" class="form-control" id="Inputpuesto_idpuestoAct" >
                     <option>SELECCIONE</option>
                 </select>
              </div>
                               
                     </div>             
                                
-                                  <div class="col-lg-4">
+                             <div style="display: none" class="col-lg-4">
                                    <div class="form-group">
-                          <label for="Inputid">idcargo</label>
-                          <input type="text" name="id" class="form-control" id="Inputid" placeholder="id" required>
+                          <label for="InputidAct">idcargo</label>
+                          <input type="text" name="idAct" class="form-control" id="InputidAct" placeholder="id" required>
                        </div>
                              </div> 
                          
@@ -117,7 +115,7 @@
                                 <div class="form-group">
                 <label for="Inputpuesto_idpuesto">Puestos</label>
                 <select name="puesto_idpuesto" class="form-control" id="Inputpuesto_idpuesto" >
-                    <option>SELECCIONE</option>
+                   <!-- <option>SELECCIONE</option>--->
                 </select>
              </div>
                               
@@ -136,8 +134,8 @@
                              </div> 
                          
                              </div>
-                        <button type="button" id="btn-ingresar"  class="btn btn-primary" onclick="registrar()">Registrar</button>
-                          <button type="button" id="btn-ingresar"  class="btn btn-primary" onclick="registrar()">Actualizar</button>
+ 
+          <button type="button" id="btn-ingresar"  class="btn btn-primary" onclick="registrar()">Trasladar</button>
                       </form>
                       
                              </div>
@@ -156,37 +154,112 @@
                </div><!-- panel-body -->
           </div> <!-- panel -->
    
-
+              <!-- Sweet alert -->
+ <script src="js/plugins/sweetalert/sweetalert.min.js"></script>
+ 
+ 
+ <!----------------------*******Actualizar *******************************---------->
+ 
              <script>
-                   var mySelect2;
-                  // var a;
-                                    $(document).ready(function () {
+       var mySelect2;
+      // var a;
+                        $(document).ready(function () {
                                                    
                            
       
          
-            //    var a=''+id;
-        document.getElementById("Inputpersona_id").value=SUPER_GLOBAL;
-        document.getElementById("Inputid").value=SUPER_GLOBAL_IDCARGO;
-      //  a=SUPER_GLOBAL_IDCARGO;
-       // mySelect2=document.getElementById("Inputempresa_idempresa_p").value;
+//    var a=''+id;
+document.getElementById("Inputpersona_id").value=SUPER_GLOBAL;
+document.getElementById("InputidAct").value=SUPER_GLOBAL_IDCARGO;
+//  a=SUPER_GLOBAL_IDCARGO;
+// mySelect2=document.getElementById("Inputempresa_idempresa_p").value;
       
-          $.get('../back/controller/puesto/PuestoList_combo.php',{'empresa':SUPER_GLOBAL_SUCURSAL},function(depa){
-          var mySelect=document.getElementById("Inputpuesto_idpuesto");
+$.get('../back/controller/puesto/PuestoList_combo.php',{'empresa':SUPER_GLOBAL_SUCURSAL},function(depa){
+var mySelect=document.getElementById("Inputpuesto_idpuestoAct");
+
+  if(mySelect!=null){
+              removeAllChildren(mySelect);
+          }
+//  mySelect.appendChild(createOPTION(-1,'SELECCIONE'));
+depa = JSON.parse(depa);
+for (var i = 1 ; i < depa.length; i++) {
+  mySelect.appendChild(createOPTION(depa[i].idpuesto,depa[i].nombre));
+}  
+          
+});
+                                      
+                        });
+                                    
+                                    
+                         function actualizar(){
+          
+var url = "../back/controller/cargo/CargoUpdate.php";
+
+$.ajax({                        
+type: "POST",                 
+url: url,                     
+data: $("#PuestoActu").serialize(), 
+          
+        
+         
+success: function(data) 
+         
+{
+   if(data=='true'){
+       aceptarCargoG();
+   }
+                          
+}
+});
+}
+   
+function aceptarCargoG(){
+$('#myModal').modal('hide');
+swal({
+            title: "Registro",
+            text: "Registro Cargo Exitoso!",
+            type: "success",
+           // showCancelButton: true,
+            confirmButtonColor: "#1ab394",
+            confirmButtonText: "Ok",
+           // cancelButtonText: "No, cancel plx!",
+          //   closeOnConfirm: false,
+            closeOnCancel: false },
+        function (isConfirm) {
+            if (isConfirm) {
+             //   alert(mySelect2);
+                console.log('siver');
+                empleado_Listar2();
+                  // puesto_Listar_Tabla(mySelect2);
+               // swal("Deleted!", "Your imaginary file has been deleted.", "success");
+            } 
+            else {
+                swal("Cancelled", "Your imaginary file is safe :)", "error");
+            }
+        });
+   
+};
+    
+    
+                
+             </script>
+        
+   <!----------------------*******  Fin   **********   Actualizar *******************************---------->      
+        
+        
+               <script>
+                      $(document).ready(function () { //no tocar //
+           $.get('../back/controller/empresa_p/Empresa_pList.php',function(depa){
+          var mySelect=document.getElementById("InputidEmpresa_p");
          removeAllChildren(mySelect);
              mySelect.appendChild(createOPTION(-1,'SELECCIONE'));
           depa = JSON.parse(depa);
          for (var i = 1 ; i < depa.length; i++) {
-              mySelect.appendChild(createOPTION(depa[i].idpuesto,depa[i].nombre));
+              mySelect.appendChild(createOPTION(depa[i].idEmpresa_p,depa[i].Empresa_p_nombre));
             }  
-          
-        });
-                                      
-                                    });
-    
-                
-        </script>
-               <script>
+            });
+     });
+  
            
    function ListarSucursales(empresa){ 
            
@@ -214,6 +287,7 @@
             }  
           
         });
+       
           listarPuesto(empresa);
       }
    function listarCargos(empresa){ 
@@ -230,10 +304,12 @@
         });
       }
    function listarPuesto(empresa){ 
-    
-        $.get('../back/controller/puesto/PuestoList_1.php',{'empresa':empresa},function(depa){
+
+        $.get('../back/controller/puesto/PuestoList_tabla.php',{'empresa':empresa},function(depa){
           var mySelect=document.getElementById("Inputpuesto_idpuesto");
-          removeAllChildren(mySelect);
+         if(mySelect!=null){
+              removeAllChildren(mySelect);
+          }
             //   mySelect.appendChild(createOPTION(-1,'SELECCIONE'));
           depa = JSON.parse(depa);         
          for (var i = 1 ; i < depa.length; i++) {
@@ -243,26 +319,7 @@
         });
       }
       
-   function actualizar(){
-          
-        var url = "../back/controller/cargo/CargoUpdate.php";
-        $.ajax({                        
-           type: "POST",                 
-           url: url,                     
-           data: $("#PuestoAct").serialize(), 
-          
-         
-           success: function(data) 
-         
-           {
-               if(data=='true'){
-                   aceptar();
-               }
-                          
-           }
-       });
-   } 
-    
+  
    
         </script>
 </html>

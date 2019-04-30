@@ -1159,7 +1159,7 @@
 
 
       $(document).ready(function() {
-       cargarSelects();
+       
       });
       
       function cargarExcel(){
@@ -1497,10 +1497,14 @@
             }
             
  function mostrarTodo(idp) {
+   
+document.getElementById("familiaressss").reset();
+
               // console.log(idp);
-               
+               cargarSelects();
                   //    var a1=''+id2;
                // var b2=''+nombre2;
+               console.log('id persona mostrar detalles'+idp);
                cargarPersona(idp);
          
                  
