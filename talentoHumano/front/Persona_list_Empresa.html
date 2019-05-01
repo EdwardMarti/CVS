@@ -1170,9 +1170,7 @@
 //-----------------------------------------------------------------------------------------------
 
 
-      $(document).ready(function() {
-       
-      });
+     
       
       function cargarExcel(){
           $.post('../back/controller/todo/lector.php',function(data){
@@ -1286,7 +1284,7 @@
 
       function cargarPersona(idp) {
           //alert('mostrar'+idp);
-          console.log('mostrar'+idp);
+        //  console.log('mostrar'+idp);
           //Esto se supone me traera todo en formato {'entidad':{'atr':'val','atr':'val'},'entidad2':{'atr':'val'}}
           $.post('../back/controller/todo/PersonaTodo.php',{'idPersona':idp},function(data){
                // console.log(data);  
@@ -1516,7 +1514,7 @@ document.getElementById("familiaressss").reset();
                cargarSelects();
                   //    var a1=''+id2;
                // var b2=''+nombre2;
-               console.log('id persona mostrar detalles'+idp);
+             //  console.log('id persona mostrar detalles'+idp);
                cargarPersona(idp);
          
                  
@@ -1661,7 +1659,7 @@ function ocultar() {
 function nextPrev(id) {
     
      n=n+id;
-   console.log('yooo'+n);
+  // console.log('yooo'+n);
     id1=n;
      
  id11='tab-'+id1;
@@ -1778,6 +1776,8 @@ function showTab(n) { //MUESTRA EL NOMBRE EN LE BOTON
 //-----------------------------------------------------------------------------------------------
 
 
+<<<<<<< HEAD
+=======
       $(document).ready(function() {
         //cargarSelects();
        //   cargarEmpresas('Inputempresa_idempresa');
@@ -1786,6 +1786,7 @@ function showTab(n) { //MUESTRA EL NOMBRE EN LE BOTON
  //console.log("scae el valor"+document.getElementById("Inputempresa_idempresa"));
       });
       
+>>>>>>> fe574e7ab9a012d4af6b0908ec096f1cc6414507
       
       
       
@@ -1839,8 +1840,8 @@ function showTab(n) { //MUESTRA EL NOMBRE EN LE BOTON
 
       function cargarMisnombres(){
           $.post('../back/controller/todo/datos.php',function(data){
-         console.log("dDDDDD");    
-        console.log(data);
+        // console.log("dDDDDD");    
+      //  console.log(data);
         });
       }
 
@@ -1936,7 +1937,7 @@ function showTab(n) { //MUESTRA EL NOMBRE EN LE BOTON
         
         t = JSON.parse(JSON.stringify(todo));
         $.post('../dist/proxy/todo/actualizar.php',t,function(data){
-            console.log(data);
+       //     console.log(data);
         });
       }
 
@@ -1947,7 +1948,7 @@ function showTab(n) { //MUESTRA EL NOMBRE EN LE BOTON
                 dato = JSON.parse(data);
                   key = Object.keys(dato);                 
                   for( var j = 0; j < key.length; j++){
-                      console.log(dato[key[j]]);
+                     // console.log(dato[key[j]]);
                       r = dato[key[j]];
                      setDatos(key[j].charAt(0).toUpperCase()+key[j].slice(1)+"Insert", r); 
                   }                                                      
@@ -2001,7 +2002,7 @@ function showTab(n) { //MUESTRA EL NOMBRE EN LE BOTON
                 dato = JSON.parse(data);
                   key = Object.keys(dato);                 
                   for( var j = 0; j < key.length; j++){
-                      console.log(dato[key[j]]);
+                    //  console.log(dato[key[j]]);
                       r = dato[key[j]];
                      setDatos(key[j].charAt(0).toUpperCase()+key[j].slice(1)+"Insert", r); 
                   }                                                      
@@ -2036,7 +2037,7 @@ function showTab(n) { //MUESTRA EL NOMBRE EN LE BOTON
         ke = Object.keys(datos);
         for (var i = ke.length - 1; i >= 0; i--) {
           t = "#"+idFormulario+" #Input"+ke[i];
-          console.log(t);
+         // console.log(t);
           $(t).val(datos[ke[i]]);
         }
   
@@ -2045,7 +2046,7 @@ function showTab(n) { //MUESTRA EL NOMBRE EN LE BOTON
       function setDatosFamiliares(idFormulario,datos){               
         nf = 0;
         document.getElementById(idFormulario).innerHTML=' ';
-        console.log("limpio");
+     //   console.log("limpio");
         for (var i = 1; i < datos.length; i++) {
             tr = document.createElement("tr");
             nf++ ;

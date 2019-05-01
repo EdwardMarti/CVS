@@ -1,4 +1,8 @@
-             <div class="tabs-container" style="color: black">
+          <!-- Sweet Alert -->
+    <link href="css/plugins/sweetalert/sweetalert.css" rel="stylesheet"> 
+
+
+<div class="tabs-container" style="color: black">
                  <ul class="nav nav-tabs" role="tablist">
                      <li><a class="nav-link active" id="1"  href="#tab-1" onclick="cambiarTab('tab-1')">DATOS PERSONALES</a></li>
                      <li><a class="nav-link " id="2" href="#tab-2" onclick="cambiarTab('tab-2')">DATOS ADICIONALES</a></li>
@@ -716,6 +720,9 @@
 <script type="text/javascript" src="js/constructorSelect.js"></script>
 
 
+    <!-- Sweet alert -->
+    <script src="js/plugins/sweetalert/sweetalert.min.js"></script>
+
 <!--//****************************************************************************************************//-->
 
 
@@ -897,8 +904,8 @@ function showTab(n) { //MUESTRA EL NOMBRE EN LE BOTON
 
       function cargarMisnombres(){
           $.post('../back/controller/todo/datos.php',function(data){
-         console.log("dDDDDD");    
-        console.log(data);
+       //  console.log("dDDDDD");    
+        //console.log(data);
         });
       }
 
@@ -1005,6 +1012,7 @@ function showTab(n) { //MUESTRA EL NOMBRE EN LE BOTON
                 'salud':salud,
              //   'cargo':cargo,
                 'celular':celular,
+                
                 'familiares':familiares,
                 'familiaresnuevos':MISFAMILIARESNUEVOS
             }
@@ -1012,13 +1020,13 @@ function showTab(n) { //MUESTRA EL NOMBRE EN LE BOTON
         
         t = JSON.parse(JSON.stringify(todo));   
         
-            console.log(t);
+          //  console.log(t);
             
         $.post('../dist/proxy/todo/actualizar.php',t,function(data){
-             var objeto_json = JSON.parse(data);
-           console.log(data);
+             var objeto_json = JSON.parse("datos de respuesta".data);
+          // console.log(data);
          //    console.log(objeto_json);
-           console.log(objeto_json[0].msg);
+         // console.log(objeto_json);
           
           if(objeto_json[0].msg=='true'){
     
@@ -1031,12 +1039,6 @@ if(objeto_json[0].msg=='error1'){
 
         });
       }
-
-
-
-
-
-
 
 
      function aceptarPersona(){
@@ -1093,63 +1095,6 @@ if(objeto_json[0].msg=='error1'){
 
 
 
- function actualizar_Persona(){
-      
-         
-        var url = "../back/controller/cargo_empreso/Cargo_empresoInsert_actualizar.php";
-   
-        $.ajax({                        
-           type: "POST",                 
-           url: url,                     
-           data: $("#areaformAct").serialize(), 
-          
-         
-           success: function(data) 
-         
-           {
-               if(data=='true'){
-                 aceptarCargo();
-               }
-                          
-           }
-       });
-   
-};
-
-     function aceptarCargo(){
-     $('#myModalcargo').modal('hide');
-       swal({
-                        title: "Registro",
-                        text: "Registro Exitoso!",
-                        type: "success",
-                       // showCancelButton: true,
-                        confirmButtonColor: "#1ab394",
-                        confirmButtonText: "Ok",
-                       // cancelButtonText: "No, cancel plx!",
-                      //   closeOnConfirm: false,
-                        closeOnCancel: false },
-                    function (isConfirm) {
-                        if (isConfirm) {
-                         
-                         
-                               cargo_Listar_2(mySelect);
-                           // swal("Deleted!", "Your imaginary file has been deleted.", "success");
-                        } 
-                        else {
-                            swal("Cancelled", "Your imaginary file is safe :)", "error");
-                        }
-                    });
-   
-};
-
-
-
-
-
-
-
-
-
 
 
       function Inputnivel_vigilancia_idcargarPersona_updade(idp) {
@@ -1159,7 +1104,7 @@ if(objeto_json[0].msg=='error1'){
                 dato = JSON.parse(data);
                   key = Object.keys(dato);                 
                   for( var j = 0; j < key.length; j++){
-                      console.log(dato[key[j]]);
+                   //   console.log(dato[key[j]]);
                       r = dato[key[j]];
                      setDatos(key[j].charAt(0).toUpperCase()+key[j].slice(1)+"Insert", r); 
                   }                                                      
@@ -1192,7 +1137,7 @@ if(objeto_json[0].msg=='error1'){
                 dato = JSON.parse(data);
                   key = Object.keys(dato);                 
                   for( var j = 0; j < key.length; j++){
-                      console.log(dato[key[j]]);
+                    //  console.log(dato[key[j]]);
                       r = dato[key[j]];
                      setDatos(key[j].charAt(0).toUpperCase()+key[j].slice(1)+"Insert", r); 
                   }                                                      
@@ -1227,7 +1172,7 @@ if(objeto_json[0].msg=='error1'){
         ke = Object.keys(datos);
         for (var i = ke.length - 1; i >= 0; i--) {
           t = "#"+idFormulario+" #Input"+ke[i];
-          console.log(t);
+       //   console.log(t);
           $(t).val(datos[ke[i]]);
         }
   
@@ -1251,26 +1196,7 @@ if(objeto_json[0].msg=='error1'){
   
       }
       
-      
-        //'persona'
-       // getDatos('PersonaInsert','persona',idp);
-        //'direccion':
-       /* getDatos('DomicilioInsert',getDatos('direccion,',idp));
-        //'banco':
-        getDatos('BancoInsert',getDatos('banco,',idp));
-        //'fechas':
-        getDatos('Fechas_particularesInsert',getDatos('fechas,',idp));
-        //'estudio':
-        getDatos('EstudioInsert',getDatos('estudio,',idp));
-        //'cooperativismo':
-        getDatos('CooperativismoInsert',getDatos('cooperativismo,',idp));
-        //'varios':
-        getDatos('Varios_empresaInsert',getDatos('varios,',idp));
-        //'salud':
-        getDatos('Salud_pensionInsert',getDatos('salud,',idp));
-        //'cargo':
-        getDatos('CargoInsert',getDatos('cargo,',idp));
-*/
+  
 
       var miInput;
 

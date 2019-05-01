@@ -94,7 +94,7 @@ if($rta){
     
 //    
 //        var_dump($mail_body_user);
-   $mail = new enviarMail();
+$mail = new enviarMail();
 $mail->enviarMensajePeticion( $mail_body_admin); //me envia
 //$mail->enviarMensajeMilena( $mail_body_admin); // Monitoreo
 $mail->enviarMensajePeticionUsuario($usuario_correo, $mail_body_user); // a quien genera

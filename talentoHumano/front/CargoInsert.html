@@ -3,7 +3,7 @@
 <!--              -------Creado por-------               -->
 <!--             \(°u° )/ Anarchy \( °u°)/               -->
 <!--              ------------------------               -->
-         <!-- Sweet Alert -->
+         <!-- Sweet Alert --> 
     <link href="css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
 <!--//    Has encontrado la frase #1024 ¡Felicidades! Ahora tu proyecto funcionará a la primera  \\                  -->
       <div>
@@ -321,26 +321,15 @@ swal({
       }
       
       function registrarCargoNuevo(){
-          
-var url = "../back/controller/cargo/CargoInsert.php";
-
-$.ajax({                        
-type: "POST",                 
-url: url,                     
-data: $("#CargoInsert").serialize(), 
-          
-        
-         
-success: function(data) 
-         
-{
-   if(data=='true'){
-       aceptarCargoG();
-   }
-                          
-}
-});
-}
+        data=$("#CargoInsert").serialize();
+        $.post("../back/controller/cargo/CargoInsert.php",data,function(result){
+            if(result){
+              aceptarCargoG();
+            }else{
+              console.log('FALSE');
+            }
+        });
+      }
    
    
         </script>

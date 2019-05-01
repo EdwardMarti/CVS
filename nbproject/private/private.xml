@@ -3,8 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp1/htdocs/unik/cvs_web_1/talentoHumano/front/Persona_list_Empresa.html</file>
-            <file>file:/C:/xampp1/htdocs/unik/cvs_web_1/talentoHumano/front/empleado_registrar_1.html</file>
+            <file>file:/C:/xampp1/htdocs/unik/cvs_web_1/talentoHumano/dist/controler/TodoController.php</file>
+            <file>file:/C:/xampp1/htdocs/unik/cvs_web_1/talentoHumano/dist/mapper/TodoMapper.php</file>
+            <file>file:/C:/xampp1/htdocs/unik/cvs_web_1/talentoHumano/front/empleado_registrar_update.html</file>
         </group>
     </open-files>
 </project-private>
