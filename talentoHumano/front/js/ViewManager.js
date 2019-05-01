@@ -821,6 +821,7 @@ function prePersonaList(container){
 
  function postPersonaList(result,state){
      //Maneje aquí la respuesta del servidor.
+     alert("holi");
      if(state=="success"){
          var json=JSON.parse(result);
          if(json[0].msg=="exito"){
