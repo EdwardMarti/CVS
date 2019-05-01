@@ -13,6 +13,10 @@ $fecha_ingreso = $_POST['fecha_ingreso'];
 $Empresa_idempresa = $_POST['empresa_idempresa'];
 $empresa= new Empresa();
 $empresa->setIdempresa($Empresa_idempresa);
+
+$Empresa_idempresa_p = $_POST['idEmpresa_p'];
+$empresa_p= new Empresa_p();
+$empresa_p->setIdEmpresa_p($Empresa_idempresa_p);
 $Area_empresa_idarea_emp = $_POST['area_empresa_idarea_emp'];
 $area_empresa= new Area_empresa();
 $area_empresa->setIdarea_emp($Area_empresa_idarea_emp);
@@ -22,7 +26,13 @@ $cargo_empreso->setIdcargo($Cargo_empreso_idcargo);
 $Puesto_idpuesto = $_POST['puesto_idpuesto'];
 $puesto= new Puesto();
 $puesto->setIdpuesto($Puesto_idpuesto);
-CargoFacade::insert($id, $fecha_ingreso, $empresa, $area_empresa, $cargo_empreso, $puesto);
+$Persona = $_POST['persona_id'];
+$persona= new Persona();
+$persona->setId($Persona);
+$rpta=CargoFacade::insertNuevo($id, $fecha_ingreso, $empresa, $area_empresa, $cargo_empreso, $puesto,$empresa_p,$persona);
+
+
+print_r($rpta);
 echo "true";
 
 //That´s all folks!

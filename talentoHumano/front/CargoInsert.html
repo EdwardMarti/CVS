@@ -126,16 +126,16 @@
                           <input type="text" name="persona_id" class="form-control" id="Inputpersona_id" placeholder="puesto_idpuesto">
                        </div>        
                     </div>             
-                                  <div class="col-lg-4">
+                                 <div class="col-lg-4">
                                    <div class="form-group">
                           <label for="Inputid">id</label>
                           <input type="text" name="id" class="form-control" id="Inputid" placeholder="id" required>
                        </div>
-                             </div> 
+                             </div>  
                          
                              </div>
  
-          <button type="button" id="btn-ingresar"  class="btn btn-primary" onclick="registrar()">Trasladar</button>
+          <button type="button" id="btn-ingresar"  class="btn btn-primary" onclick="registrarCargoNuevo()">Trasladar</button>
                       </form>
                       
                              </div>
@@ -213,6 +213,7 @@ success: function(data)
 });
 }
    
+                     
 function aceptarCargoG(){
 $('#myModal').modal('hide');
 swal({
@@ -319,7 +320,28 @@ swal({
         });
       }
       
-  
+      function registrarCargoNuevo(){
+          
+var url = "../back/controller/cargo/CargoInsert.php";
+
+$.ajax({                        
+type: "POST",                 
+url: url,                     
+data: $("#CargoInsert").serialize(), 
+          
+        
+         
+success: function(data) 
+         
+{
+   if(data=='true'){
+       aceptarCargoG();
+   }
+                          
+}
+});
+}
+   
    
         </script>
 </html>

@@ -444,36 +444,54 @@
                             <div role="tabpanel" id="tab-8" class="tab-pane">
                                 <div class="panel-body">
                                     <div class="text-left m-t-md">     
-      <form   role="form" id="CargoInsert" >
-          
-            <div class="form-group">
+         <form   role="form" id="CargoInsert" >
+          <div class="row">
+               <div class="form-group">
                 <input type="hidden" name="id" class="form-control" id="Inputid" placeholder="id" >
              </div>
-            <div class="form-group">
-                <input type="hidden" name="fecha_ingreso" class="form-control" id="Inputfecha_ingreso" placeholder="fecha_ingreso">
+              
+                <div class="col-lg-6">
+                 <div class="form-group">
+                 <label for="Inputfecha_ingreso">Fecha de Ingreso</label>
+                <input type="date" name="fecha_ingreso" class="form-control" id="Inputfecha_ingreso" placeholder="fecha_ingreso">
              </div>
-            <div class="form-group">
-                <label for="Inputempresa_idempresa">empresa_idempresa</label>
+          </div>
+                <div class="col-lg-6">
+                <div class="form-group">
+                <label for="Inputempresa_idempresa">Sucursal Empresa</label>
                 <select name="empresa_idempresa" class="form-control" id="Inputempresa_idempresa" onchange="cargarAreas(this.value);">
                                   <option value="-1">SELECCIONE</option>  
                 </select> 
              </div>
-            <div class="form-group">
-                <label for="Inputarea_empresa_idarea_emp">area_empresa_idarea_emp</label>
+          </div>
+                <div class="col-lg-6">
+                <div class="form-group">
+                <label for="Inputarea_empresa_idarea_emp">Area Empresa</label>
                 <select name="area_empresa_idarea_emp" class="form-control" id="Inputarea_empresa_idarea_emp" onchange="cargarCargos(this.value);">
     <option value="-1">SELECCIONE</option>
                 </select>
              </div>
-            <div class="form-group">
-                <label for="Inputcargo_empreso_idcargo">cargo_empreso_idcargo</label>
+          </div>
+                <div class="col-lg-6">
+               <div class="form-group">
+                <label for="Inputcargo_empreso_idcargo">Cargo Empresa</label>
                 <select name="cargo_empreso_idcargo" class="form-control" id="Inputcargo_empreso_idcargo">
                                 <option value="-1">SELECCIONE</option>                   
                 </select>
              </div>
-            <div class="form-group">
-                <input type="hidden" value="1" name="puesto_idpuesto" class="form-control" id="Inputpuesto_idpuesto" placeholder="puesto_idpuesto">
+          </div>
+                <div class="col-lg-6">
+              <div class="form-group">
+                   <label for="Inputpuesto_idpuesto">puesto Empresa</label>
+                   <select disabled name="puesto_idpuesto" class="form-control" id="Inputpuesto_idpuesto">
+                                <option value="-1">SELECCIONE</option>                   
+                </select>
+              
              </div>  
-            
+          </div>
+              
+          </div>
+
           </form>
                                     </div>  
                                 </div>
@@ -1271,6 +1289,8 @@ if(objeto_json[0].msg=='error1'){
 
 //---------------------------------------------------------------------
    var miInputcargo_id;
+     var mySelect1;
+  
   
    function cargarEmpresas(idInput){   
         miInputcargo_id = idInput;
@@ -1285,7 +1305,7 @@ if(objeto_json[0].msg=='error1'){
             }  
           
         });
-       // $('#cargosModal').modal();  
+         
       }
 
 
@@ -1300,6 +1320,12 @@ if(objeto_json[0].msg=='error1'){
             }  
           
         });
+            mySelect1=document.getElementById("Inputempresa_idempresa").value;
+         // alert(mySelect1);
+         cargarPuestos(mySelect1);
+       
+      
+
       }
    function cargarAreas_all(){      
         $.get('../back/controller/area_empresa/Area_empresaList_all.php',{'empresa':empresa},function(depa){
@@ -1326,8 +1352,25 @@ if(objeto_json[0].msg=='error1'){
             }  
           
         }); 
+        $('#Inputpuesto_idpuesto').removeAttr('disabled');
       }
       
+        function cargarPuestos(empresa){ 
+           
+        $.get('../back/controller/puesto/PuestoList_tabla.php',{'empresa':empresa},function(depa){
+          var mySelect=document.getElementById("Inputpuesto_idpuesto");
+          removeAllChildren(mySelect);
+            mySelect.appendChild(createOPTION(-1,'SELECCIONE'));
+          depa = JSON.parse(depa);
+         for (var i = 1 ; i < depa.length; i++) {
+              mySelect.appendChild(createOPTION(depa[i].idpuesto,depa[i].nombre));
+            }  
+          
+        });
+        
+        
+    
+      }
          function setCargos(idcargo){
         ciudad = $('select[id=Inputcargo_empreso_idcargo] option:selected').text();
         console.log(ciudad);

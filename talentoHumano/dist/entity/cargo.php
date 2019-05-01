@@ -58,6 +58,16 @@ public function setPuesto_idpuesto($puesto_idpuesto){
  $this->COLUMNAS['puesto_idpuesto'] = $puesto_idpuesto; 
  } 
  
+public function setEmpresa_p_idEmpresa_p($empresa_p_idEmpresa_p){ 
+ if(is_null($empresa_p_idEmpresa_p)) $empresa_p_idEmpresa_p = 'null'; 
+ $this->COLUMNAS['Empresa_p_idEmpresa_p'] = $empresa_p_idEmpresa_p; 
+ } 
+ 
+public function setPersona_id($persona_id){ 
+ if(is_null($persona_id)) $persona_id = 'null'; 
+ $this->COLUMNAS['persona_id'] = $persona_id; 
+ } 
+ 
  public function set_Meta_Columnas($columnas){ 
  $this->COLUMNAS = $columnas;
  foreach ($this->PK as $key => $value) {

@@ -57,6 +57,23 @@ class CargoFacade {
      $cargoDao->close();
      return $rtn;
   }
+  public static function insertNuevo( $id,  $fecha_ingreso,  $empresa_idempresa,  $area_empresa_idarea_emp,  $cargo_empreso_idcargo,  $puesto_idpuesto,$empresa_p,$persona){
+      $cargo = new Cargo();
+      $cargo->setId($id); 
+      $cargo->setFecha_ingreso($fecha_ingreso); 
+      $cargo->setEmpresa_idempresa($empresa_idempresa); 
+      $cargo->setArea_empresa_idarea_emp($area_empresa_idarea_emp); 
+      $cargo->setCargo_empreso_idcargo($cargo_empreso_idcargo); 
+      $cargo->setPuesto_idpuesto($puesto_idpuesto); 
+      $cargo->setEmpresa_p_idEmpresa_p($empresa_p); 
+      $cargo->setPersona_id($persona); 
+
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $cargoDao =$FactoryDao->getcargoDao(self::getDataBaseDefault());
+     $rtn = $cargoDao->insertNuevo($cargo);
+     $cargoDao->close();
+     return $rtn;
+  }
   
   public static function update_fecha( $id,  $fecha_ingreso, $puesto_idpuesto){
       $cargo = new Cargo();

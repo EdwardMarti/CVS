@@ -16,6 +16,8 @@ class Cargo {
   private $area_empresa_idarea_emp;
   private $cargo_empreso_idcargo;
   private $puesto_idpuesto;
+  private $Empresa_p_idEmpresa_p;
+  private $persona_id;
 
     /**
      * Constructor de Cargo
@@ -37,6 +39,7 @@ class Cargo {
   public function setId($id){
       $this->id = $id;
   }
+  
     /**
      * Devuelve el valor correspondiente a fecha_ingreso
      * @return fecha_ingreso
@@ -111,6 +114,22 @@ class Cargo {
      */
   public function setPuesto_idpuesto($puesto_idpuesto){
       $this->puesto_idpuesto = $puesto_idpuesto;
+  }
+
+  function getEmpresa_p_idEmpresa_p() {
+      return $this->Empresa_p_idEmpresa_p;
+  }
+
+  function getPersona_id() {
+      return $this->persona_id;
+  }
+
+  function setEmpresa_p_idEmpresa_p($Empresa_p_idEmpresa_p) {
+      $this->Empresa_p_idEmpresa_p = $Empresa_p_idEmpresa_p;
+  }
+
+  function setPersona_id($persona_id) {
+      $this->persona_id = $persona_id;
   }
 
 
