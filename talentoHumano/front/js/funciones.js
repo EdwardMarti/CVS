@@ -80,7 +80,7 @@ function empleado_Listar2() {
     var datos = {};
     var rta = "#mostrarcontenido";
     ajax(url, datos, rta);
-
+    
  enviar("",'../back/controller/persona/PersonaList_Todo.php',postPersonaList); 
 
 }

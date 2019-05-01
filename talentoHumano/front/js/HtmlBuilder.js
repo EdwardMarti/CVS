@@ -196,6 +196,7 @@ function createLI(text,href){
 	No es necesario para tablas.
 */
 function removeAllChildren(obj){
+	//console.log(obj);
 	while (obj.firstChild) {
     	obj.removeChild(obj.firstChild);
 	}

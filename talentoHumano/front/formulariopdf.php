@@ -140,6 +140,13 @@
     <td>NOMBRE DE LA INSTITUCION</td>
     <td>CIUDAD</td> 
   </tr>
+  <tr>
+    <td>ESTUDIOS</td>
+    <td>AÑOS CURSADOS</td>
+    <td>TITULO OBTENIDO</td> 
+    <td>NOMBRE DE LA INSTITUCION</td>
+    <td>CIUDAD</td> 
+  </tr>
   <?php
   	for ($i=0; $i < count($estudiosDesarrollados['sub_estudios']) ; $i++) { 
   		$fila = "<tr>";
@@ -151,7 +158,7 @@
   ?>
   <tr>
   	<td <?php echo "rowspan='".count($estudiosDesarrollados['otros'])."'";?> >Otros, Cursos, diplomados, seminarios</td>
-  	</tr>
+  </tr>
 	<?php
 	  	for ($i=0; $i < count($estudiosDesarrollados['otros']) ; $i++) { 
 	  		$fila = "<tr>";
