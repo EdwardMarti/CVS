@@ -833,6 +833,9 @@ function prePersonaList(container){
                 Persona.deleteHrefB = 'mostrarEliminar("' + Persona.id + '");';
                 Persona.cargoHrefB = 'mostrarCargo("' + Persona.id + '","' + Persona.cargo_id + '","' + Persona.nivel_vigilancia_id_id + '");';
                 Persona.fileHrefB = 'mostrarSubirFile("' + Persona.id + '","' + Persona.cedula + '");';
+                
+//                delete Persona.cargo_id;
+                
                 document.getElementById("PersonaList").appendChild(createTR(Persona));
                 //-------- Para otras opciones ver htmlBuilder.js ---------.
             }
