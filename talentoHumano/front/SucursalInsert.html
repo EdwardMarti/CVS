@@ -17,15 +17,9 @@
                           <input type="text" name="idempresa" class="form-control" id="Inputidempresa" placeholder="idempresa" >
                        </div>
                               <div class="row">
-
-
-
-
-
                                             <div class="col-lg-6">
                                                 <div class="form-group">
-
-
+                                                    <label for="Inputnombre_empresa">Departamento</label>
                                                     <select id="departamentos"  class="form-control"  onchange="cargarCiudades(this.value);">
                                                       
                                                     </select>
@@ -34,23 +28,24 @@
 
                                             <div class="col-lg-6">
                                                 <div class="form-group">
-                                                    <select id="ciudades"  class="form-control"  onchange="cargarContenido();">
-                                                       
+                                                  <label for="Inputnombre_empresa">Ciudad</label>
+                                                    <!--<select id="ciudades" name="nombre_empresa"  class="form-control"  onchange="cargarContenido();">-->
+                                                       <select id="ciudades" name="nombre_empresa"  class="form-control">
                                                     </select>
                                                 </div>
                                             </div>
                                         </div>
-                      <div class="form-group">
-                          <label for="Inputnombre_empresa">Ciudad Sucursal</label>
+                      <!-- <div class="form-group">
+                          
                           <input type="text" name="nombre_empresa" class="form-control" id="Inputnombre_empresa" placeholder="nombre_empresa"  readonly="readonly">
+                       </div> -->
+                      <div class="form-group">
+                          <label for="Inputnit_empresa">Teléfono</label>
+                          <input type="text" name="nit_empresa" class="form-control" id="Inputnit_empresa" placeholder="Teléfono">
                        </div>
                       <div class="form-group">
-                          <label for="Inputnit_empresa">Telefono Sucursal</label>
-                          <input type="text" name="nit_empresa" class="form-control" id="Inputnit_empresa" placeholder="nit_empresa">
-                       </div>
-                      <div class="form-group">
-                          <label for="Inputdireccion_empresa">Direccion Sucursal</label>
-                          <input type="text" name="direccion_empresa" class="form-control" id="Inputdireccion_empresa" placeholder="direccion_empresa">
+                          <label for="Inputdireccion_empresa">Dirección</label>
+                          <input type="text" name="direccion_empresa" class="form-control" id="Inputdireccion_empresa" placeholder="Dirección">
                        </div>
                             <div style="display: none" class="form-group">
                           <label for="InputEmpresa_p_idEmpresa_p">id_empresa</label>
@@ -104,7 +99,7 @@
           mySelect.appendChild(createOPTION(-1,'SELECCIONE'));
           depa = JSON.parse(depa);
          for (var i = 1 ; i < depa.length; i++) {
-              mySelect.appendChild(createOPTION(depa[i].idciudad,depa[i].ciudad_descripcion));
+              mySelect.appendChild(createOPTION(depa[i].ciudad_descripcion,depa[i].ciudad_descripcion));
             }  
           
         });
