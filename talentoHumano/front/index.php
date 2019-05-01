@@ -224,7 +224,7 @@
                             <a onclick="sucursal_emp_Listar()">Sucursal</a>
                         </li>
                         <li>
-                            <a onclick="area_Listar()">Area</a>
+                            <a onclick="area_Listar()">Área</a>
                         </li>
                         <li>
                             <a onclick="cargo_Listar()">Cargo</a>
