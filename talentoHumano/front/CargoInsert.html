@@ -63,7 +63,7 @@
                             <div role="tabpanel" id="tab-2" class="tab-pane">
                                 <div class="panel-body">
                                 <div align=center class="panel-body">
-                  <form role="form" id="CargoInsert">
+                  <form role="form" id="formInsert">
                       
                          <div class="row">
                          
@@ -95,7 +95,7 @@
                              <div class="col-lg-4"> 
                                 <div class="form-group">
                 <label for="Inputarea_empresa_idarea_emp">area</label>
-                <select name="area_empresa_idarea_emp1" class="form-control" id="Inputarea_empresa_idarea_emp1" onchange="listarCargos(this.value);">
+                <select name="area_empresa_idarea_emp" class="form-control" id="Inputarea_empresa_idarea_emp1" onchange="listarCargos(this.value);">
                     <option>SELECCIONE</option>
                 </select>
              </div>
@@ -135,7 +135,7 @@
                          
                              </div>
  
-          <button type="button" id="btn-ingresar"  class="btn btn-primary" onclick="registrarCargoNuevo()">Trasladar</button>
+                      <button type="button" id="btn-ingresar"  class="btn btn-primary" onclick="registrarCa()">Trasladar</button>
                       </form>
                       
                              </div>
@@ -320,17 +320,30 @@ swal({
         });
       }
       
-      function registrarCargoNuevo(){
-        data=$("#CargoInsert").serialize();
-        $.post("../back/controller/cargo/CargoInsert.php",data,function(result){
-            if(result){
-              aceptarCargoG();
-            }else{
-              console.log('FALSE');
-            }
-        });
-      }
+      
+         function registrarCa(){
+      
+         
+        var url = "../back/controller/cargo/CargoInsert.php";
+        $.ajax({                        
+           type: "POST",                 
+           url: url,                     
+           data: $("#formInsert").serialize(), 
+          
+         
+           success: function(data) 
+         
+           {
+               if(data=='true'){
+                   aceptar();
+               }
+                          
+           }
+       });
    
+}; 
+      
+
    
         </script>
 </html>

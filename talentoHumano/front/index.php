@@ -26,12 +26,7 @@
 
 <head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <meta http-equiv="Expires" content="0">
-  <meta http-equiv="Last-Modified" content="0">
-  <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
-  <meta http-equiv="Pragma" content="no-cache">
+ 
 
     <title>CVS </title>
 
@@ -52,7 +47,7 @@
 
     <div id="wrapper">
 
-        <div class="theme-config" style="display: none">
+<!--        <div class="theme-config" style="display: none">
     <div class="theme-config-box show">
         <div class="spin-icon">
             <i class="fa fa-cogs fa-spin"></i>
@@ -186,7 +181,7 @@
             </div>
         </div>
     </div>
-</div>
+</div>-->
         
         
     <nav class="navbar-default navbar-static-side" role="navigation">
@@ -348,7 +343,7 @@
                       <div class="ibox-content">
                           
                        <div class="embed-responsive embed-responsive-16by9">
-  <iframe class="embed-responsive-item" src="http://localhost/Calendario/"></iframe>
+  <iframe class="embed-responsive-item" src="http://192.168.1.10/Calendario/"></iframe>
 </div>
  
  

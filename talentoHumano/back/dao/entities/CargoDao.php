@@ -48,16 +48,16 @@ $puesto_idpuesto=$cargo->getPuesto_idpuesto()->getIdpuesto();
       }
   }
   public function insertNuevo($cargo){
-      $id=$cargo->getId();
-$fecha_ingreso=$cargo->getFecha_ingreso();
-$empresa_idempresa=$cargo->getEmpresa_idempresa()->getIdempresa();
-$area_empresa_idarea_emp=$cargo->getArea_empresa_idarea_emp()->getIdarea_emp();
-$cargo_empreso_idcargo=$cargo->getCargo_empreso_idcargo()->getIdcargo();
-$puesto_idpuesto=$cargo->getPuesto_idpuesto()->getIdpuesto();
-$empresa_p=$cargo->getEmpresa_p_idEmpresa_p()->getIdempresa();
-$Persona=$cargo->getPersona_id()->getId();
+        $id = $cargo->getId();
+        $fecha_ingreso = $cargo->getFecha_ingreso();
+        $empresa_idempresa = $cargo->getEmpresa_idempresa()->getIdempresa();
+        $area_empresa_idarea_emp = $cargo->getArea_empresa_idarea_emp()->getIdarea_emp();
+        $cargo_empreso_idcargo = $cargo->getCargo_empreso_idcargo()->getIdcargo();
+        $puesto_idpuesto = $cargo->getPuesto_idpuesto()->getIdpuesto();
+        $empresa_p = $cargo->getEmpresa_p_idEmpresa_p()->getIdEmpresa_p();
+        $Persona = $cargo->getPersona_id()->getId();
 
-      try {
+        try {
           $sql= "INSERT INTO `cargo`( `id`, `fecha_ingreso`, `empresa_idempresa`, `area_empresa_idarea_emp`, `cargo_empreso_idcargo`, `puesto_idpuesto`, `Empresa_p_idEmpresa_p`, `persona_id`)"
           ."VALUES ('$id','$fecha_ingreso','$empresa_idempresa','$area_empresa_idarea_emp','$cargo_empreso_idcargo','$puesto_idpuesto','$empresa_p','$Persona')";
           return $this->insertarConsulta($sql);
