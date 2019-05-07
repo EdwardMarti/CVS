@@ -80,7 +80,7 @@ function empleado_Listar2() {
     var datos = {};
     var rta = "#mostrarcontenido";
     ajax(url, datos, rta);
-    
+
  enviar("",'../back/controller/persona/PersonaList_Todo.php',postPersonaList); 
 
 }
@@ -150,6 +150,7 @@ function sucursal_emp_Listar_2(empresa) {
     var datos = {};
     var rta = "#mostrarcontenido2";
     ajax(url, datos, rta);
+    
     enviar("",'../back/controller/empresa/EmpresaList_sucursal.php?empresa='+ empresa,postEmpresaList);     
 //enviar("",'../back/controller/area_empresa/Area_empresaList_1.php?empresa=' + empresa,postArea_empresaList); 
 }
