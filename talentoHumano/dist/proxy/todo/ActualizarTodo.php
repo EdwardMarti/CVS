@@ -73,7 +73,7 @@ class ActualizarTodo {
         	$salud_pension
         	//$cargo
         	//$celular,
-        	//$familiar
+        	//$familiar 
         	);
        //print_r($todo);
         //echo 'Start';

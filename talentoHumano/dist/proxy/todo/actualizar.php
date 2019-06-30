@@ -5,9 +5,14 @@
 
     $fami = $_POST['entidades']['familiares'];
     $fami_Nuevos = $_POST['entidades']['familiaresnuevos'];
+
+    unset($array_entidades['familiares']);
+    unset($array_entidades['familiaresnuevos']);   
+
 	$registrador = new ActualizarTodo(filtrar($array_entidades),$fami,$fami_Nuevos);
 	
-	echo $registrador->registrarTodo();
+    echo $registrador->registrarTodo();
+    
         
         function filtrar($entidades) {
             $miArray = array();
@@ -20,9 +25,16 @@
         }
         
         function construir($algo){
-            $miarray2 = array();       
+
             for ($entidad = 0; $entidad < count($algo); $entidad++) {
-                $miarray2[$algo[$entidad]['name']]=$algo[$entidad]['value'];
+                try{
+                   // var_dump($algo[$entidad]);
+                    $nombre = $algo[$entidad]['name'];
+                    //echo "MI SUPER SALTO"; 
+                    $miarray2[$nombre]=$algo[$entidad]['value'];
+                }catch (Exception $e) {
+                    echo "Fallo: " . $e->getMessage();
+                 }
             }   
             return $miarray2; 
         }

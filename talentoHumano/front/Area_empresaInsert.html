@@ -11,7 +11,7 @@
           <div class="panel panel-default">
               <div align=center class="panel-heading"><h3 class="panel-title">Registrar área</h3></div>
               <div align=center class="panel-body">
-                  <form role="form" id="form1">
+                  <form role="form" id="formArea">
                
                       <div class="form-group">
                           <label for="Inputnom_area">Nombre</label>
@@ -37,15 +37,9 @@
                 <script>
                     
                          var mySelect2;
-      
-         
-            //    var a=''+id;
-        
-    
-        
+
                                       $(document).ready(function () { //no tocar //
-                                          
-                            //  mySelect=document.getElementById("Inputempresa_idempresa1").value;
+
               mySelect2=document.getElementById("Inputempresa_idempresa").value=mySelect;   
        
                                     });
@@ -56,11 +50,11 @@
      function registraraREA(){
       
          
-        var url1 = "../back/controller/area_empresa/Area_empresaInsert.php";
+        var url1 = "../back/controller/articulo_insert.php";
         $.ajax({                        
            type: "POST",                 
            url: url1,                     
-           data: $("#form1").serialize(), 
+           data: $("#formArea").serialize(), 
                  
            success: function(data) 
          

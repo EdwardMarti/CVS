@@ -28,7 +28,8 @@
                                           + Agregar
                                       </button>-->
 
-                            <button type="button" class="btn btn-primary" onclick="empresa_Registrar_P()">
+                            <button type="button" class="btn btn-primary" onclick="myModal_r()">
+                         <!--   <button type="button" class="btn btn-primary" onclick="empresa_Registrar_P()">-->
                                 + Agregar
                             </button>
                          
@@ -76,6 +77,8 @@
         </div>
     </div>
     
+<!---------------------------------Inicio  Modal de Actualizar       ----------------------------------->
+    
     <div class="modal inmodal" id="myModal2" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
                                 <div   style="color: black ; text-shadow: 1px 2px #999;" class="modal-dialog">
                                     <div class="modal-content animated flipInY">
@@ -116,6 +119,54 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
                                           
+                                            <button type="button" class="btn btn-primary" onclick="actualizar()">Salvar Cambios</button>
+                                        </div>
+                                        
+                                          </form>
+                                    </div>
+                                </div>
+                            </div>
+<!---------------------------------Fin  Modal de Actualizar       ----------------------------------->   
+<!--***********************************************************************************************-->
+<!---------------------------------Inicio Modal de Registrar       ----------------------------------->
+
+    
+<div class="modal inmodal" id="myModal_R" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
+                                <div   style="color: black ; text-shadow: 1px 2px #999;" class="modal-dialog">
+                                    <div class="modal-content animated flipInY">
+                                         <form role="form" id="Empresa_pInsert">
+                                       
+                                        <div class="modal-header"> <!---------inicia Header---->
+                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                            <h4 class="modal-title">Registrar Empresa</h4>
+                                        </div> <!---------Fin Header  ---->
+                                        
+                                        <div class="modal-body"> <!---------inicia Body---->
+                                            
+                                                      <div class="form-group">
+                          <label for="InputEmpresa_p_nombre">Nombre de empresa</label>
+                          <input type="text" name="Empresa_p_nombre_r" class="form-control" id="InputEmpresa_p_nombre_r" placeholder="Nombre de empresa">
+                       </div>
+                      <div class="form-group">
+                          <label for="Inputnit_empresa_p">Nit</label>
+                          <input type="text" name="nit_empresa_p_r" class="form-control" id="Inputnit_empresa_p_r" placeholder="Nit">
+                       </div>
+                      <div class="form-group">
+                          <label for="InputEmpresa_p_direccion">Dirección</label>
+                          <input type="text" name="Empresa_p_direccion_r" class="form-control" id="InputEmpresa_p_direccion_r" placeholder="Dirección">
+                       </div>
+                      <div class="form-group">
+                          <label for="InputEmpresa_p_tel">Teléfono</label>
+                          <input type="text" name="Empresa_p_tel_r" class="form-control" id="InputEmpresa_p_tel_r" placeholder="Teléfono">
+                       </div>
+                          
+                           
+                    
+                              
+                                        </div> <!---------Fin Body---->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                                          
                                             <button type="button" class="btn btn-primary" onclick="registrar()">Salvar Cambios</button>
                                         </div>
                                         
@@ -124,6 +175,8 @@
                                 </div>
                             </div>
 
+<!---------------------------------Fin    Modal de Registrar       ----------------------------------->
+ 
  <script src="js/plugins/dataTables/datatables.min.js"></script>
     <script src="js/plugins/dataTables/dataTables.bootstrap4.min.js"></script>
   <script src="js/funciones.js"></script>
@@ -179,6 +232,14 @@
 
              
             }
+            
+           function myModal_r() {
+   
+            $('#myModal_R').modal({show: true});
+
+             
+            }
+            
             function mostrarEliminar(id2, nombre2) {
                // console.log(id);
                       var a1=''+id2;
@@ -193,7 +254,7 @@
         </script>     
   
 <script>
-     function registrar(){
+     function actualizar(){
       
          
         var url = "../back/controller/empresa_p/Empresa_pInsert_act.php";
@@ -241,6 +302,93 @@
 };
 </script>
 
+<script>
+    
+     function registrar(){
+      
+         
+        var url = "../back/controller/empresa_p/Empresa_pInsert.php";
+        $.ajax({                        
+           type: "POST",                 
+           url: url,                     
+           data: $("#Empresa_pInsert").serialize(), 
+          
+         
+           success: function(data) 
+         
+           {
+               if(data=='true'){
+                   aceptar_r();
+               }
+                          
+           }
+       });
+   
+};
+
+     function aceptar_r(){
+       $('#myModal_R').modal('hide');
+       swal({
+                        title: "Registro",
+                        text: "Registro Exitoso!",
+                        type: "success",
+                       // showCancelButton: true,
+                        confirmButtonColor: "#1ab394",
+                        confirmButtonText: "Ok",
+                       // cancelButtonText: "No, cancel plx!",
+                      //   closeOnConfirm: false,
+                        closeOnCancel: false },
+                    function (isConfirm) {
+                        if (isConfirm) {
+                               empresa_Listar_P();
+                           // swal("Deleted!", "Your imaginary file has been deleted.", "success");
+                        } 
+                        else {
+                            swal("Cancelled", "Your imaginary file is safe :)", "error");
+                        }
+                    });
+   
+};
+
+
+
+
+</script>
+<script>
+    var miInput;
+
+      function cargarDepartamentos(idInput){
+        miInput = idInput;
+        $.get('../../../generales/back/controller/departamento/DepartamentoList.php',function(depa){
+          var mySelect=document.getElementById("departamentos");
+          removeAllChildren(mySelect);
+          mySelect.appendChild(createOPTION(-1,'SELECCIONE'));
+          depa = JSON.parse(depa);
+         for (var i = 1 ; i < depa.length; i++) {
+              mySelect.appendChild(createOPTION(depa[i].iddepartamento,depa[i].departamento_descripcion));
+            }  
+        });
+      //  $('#expedicionModal').modal();        
+      }
+
+      function cargarCiudades(departamento){
+        $.get('../../../generales/back/controller/ciudad/CiudadList.php',{'depa':departamento},function(depa){
+          var mySelect=document.getElementById("ciudades");
+          removeAllChildren(mySelect);
+          mySelect.appendChild(createOPTION(-1,'SELECCIONE'));
+          depa = JSON.parse(depa);
+         for (var i = 1 ; i < depa.length; i++) {
+              mySelect.appendChild(createOPTION(depa[i].idciudad,depa[i].ciudad_descripcion));
+            }  
+          
+        });
+      }
+
+      function cargarContenido(){
+        ciudad = $('select[id=ciudades] option:selected').text();
+        $('#'+miInput).val(ciudad);
+      }
+</script>
 
 
     <!-- That´s all folks! -->

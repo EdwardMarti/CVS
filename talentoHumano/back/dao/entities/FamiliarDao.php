@@ -146,11 +146,11 @@ $persona_id=$familiar->getPersona_id()->getId();
     public function listXID($i){
       $lista = array();
       try {
-          $sql ="SELECT `nombre`, `parentesco`, `persona_id`,`numero` FROM `familiar` INNER JOIN `familiar_has_celular` on (`familiar`.`id` = `familiar_has_celular`.`familiar_id`) INNER JOIN `celular` ON (`celular`.`id` = `familiar_has_celular`.`celular_id`) WHERE `familiar`.`persona_id` = '$i'";
+          $sql ="SELECT `familiar`.`id` AS 'idFamiliar', `nombre`, `parentesco`, `persona_id`,`numero` FROM `familiar` INNER JOIN `familiar_has_celular` on (`familiar`.`id` = `familiar_has_celular`.`familiar_id`) INNER JOIN `celular` ON (`celular`.`id` = `familiar_has_celular`.`celular_id`) WHERE `familiar`.`persona_id` = '$i'";
           $data = $this->ejecutarConsulta($sql);
           for ($i=0; $i < count($data) ; $i++) {
               $familiar= new Familiar();
-    //      $familiar->setId($data[$i]['id']);
+          $familiar->setId($data[$i]['idFamiliar']);
           $familiar->setNombre($data[$i]['nombre']);
          // $familiar->setApellido($data[$i]['apellido']);
           $familiar->setParentesco($data[$i]['parentesco']);

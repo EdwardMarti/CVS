@@ -13,7 +13,8 @@ $id = $_POST['idPersona'];
 $list=FamiliarFacade::listXID($id);
 $rta="";
 foreach ($list as $obj => $Familiar) {	
-	$rta.="{ 	    
+	$rta.="{ 	
+	    \"id\":\"{$Familiar->getId()}\",
 	    \"nombre\":\"{$Familiar->getnombre()}\",
 	    \"parentesco\":\"{$Familiar->getparentesco()}\",
             \"numero\":\"{$Familiar->numero}\",

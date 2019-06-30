@@ -187,6 +187,7 @@
                                   <th style="background-color: #ffca2e">Nombre y apellidos</th>
                                   <th style="background-color: #ffca2e"># Celular</th>
                                   <th style="background-color: #ffca2e">Parentesco</th>
+                                  <th style="display:none;">idFamiliar</th>
                                 </tr>
                             </thead>
                             <tbody id="cuerpoFamiliar">
@@ -573,7 +574,7 @@
                               <div class="form-group">
                             <input type="hidden" id="IdFamiliarModal" value="-1" />
                                    
-                                        <label>Nombre y apellido</label>
+                                        <label>Nombre y apellidos</label>
                                         <input class="form-control" type="text" id="nombreParen"/>
                                     </div> 
                                 </div>
@@ -925,7 +926,7 @@ function showTab(n) { //MUESTRA EL NOMBRE EN LE BOTON
 
       var numFamiliares = 0;
       //f1: {nombre: "gtf", celular: "434", parentesco: "2"}
-      var MISFAMILIARESNUEVOS = {};
+      var MISFAMILIARESNUEVOS = {"vacio":"0"};
       function cuerpoFamiliar(){
         tr = document.createElement("tr");
         numFamiliares++;
@@ -943,7 +944,7 @@ function showTab(n) { //MUESTRA EL NOMBRE EN LE BOTON
           document.getElementById("familiaressss").reset();
           document.getElementById("cuerpoFamiliar").appendChild(llenarTR(tr,ele));
           
-      }
+      } 
 
    
 
@@ -951,12 +952,17 @@ function showTab(n) { //MUESTRA EL NOMBRE EN LE BOTON
         for (var i = 0; i < ele.length; i++) {
           td = document.createElement("td");
           text = document.createTextNode(ele[i]);
-          td.appendChild(text);
+          td.appendChild(text);     
+           td.setAttribute("onclick", "setEditable(this);");
+          if(i==4){
+            td.setAttribute("style", "display:none;");
+          }
           tr.appendChild(td);
         }
         return tr;
       }
-     
+
+
      function getFamiliares(){
       fam = $('#cuerpoFamiliar').children('tr');
       arr = {};
@@ -973,6 +979,7 @@ function showTab(n) { //MUESTRA EL NOMBRE EN LE BOTON
         res['nombre'] = $(hij[1]).text();
         res['celular'] = $(hij[2]).text();
         res['parentesco'] = $(hij[3]).text();
+        res['idF'] = $(hij[4]).text();
         return res; 
      }
 //------------------------------------------------------------------------------------------------
@@ -992,7 +999,7 @@ function showTab(n) { //MUESTRA EL NOMBRE EN LE BOTON
         celular = $('#CelularInsert').serializeArray();
         //Actualizo el campo id
         persona[14] = {name: "id", value: SUPER_GLOBAL};
-        estudio[4] = {name: "persona_id", value: SUPER_GLOBAL};
+        estudio[3] = {name: "persona_id", value: SUPER_GLOBAL};
         varios[7] = {name: "persona_id", value: SUPER_GLOBAL};
         cooperativismo[4]['value']=SUPER_GLOBAL;
         banco[3]['value']=SUPER_GLOBAL;
@@ -1014,28 +1021,20 @@ function showTab(n) { //MUESTRA EL NOMBRE EN LE BOTON
                 'celular':celular,
                 
                 'familiares':familiares,
-                'familiaresnuevos':MISFAMILIARESNUEVOS
+                'familiaresnuevos':getNuevos()
             }
         };
         
         t = JSON.parse(JSON.stringify(todo));   
         
-          //  console.log(t);
+          console.log(t);
             
         $.post('../dist/proxy/todo/actualizar.php',t,function(data){
-             var objeto_json = JSON.parse("datos de respuesta".data);
-          // console.log(data);
-         //    console.log(objeto_json);
-         // console.log(objeto_json);
-          
-          if(objeto_json[0].msg=='true'){
-    
-   aceptarPersona();
-    
-}
-if(objeto_json[0].msg=='error1'){
-    errorPersona();
-}
+          if(data==1){
+              aceptarPersona();
+          }else{
+               errorPersona();
+          }
 
         });
       }
@@ -1123,6 +1122,14 @@ if(objeto_json[0].msg=='error1'){
         ciudad_1 = $('select[id=emp_modal] option:selected').text();
         $('#Inputempresa_idempresa').val(ciudad_1);
       }
+
+      function getNuevos(){
+        if(MISFAMILIARESNUEVOS.length > 0){
+          return MISFAMILIARESNUEVOS;
+        }else{
+          return {'vacio':'1'};
+        }
+      }
 //--------------------------------------------------------------------
 
 
@@ -1164,7 +1171,7 @@ if(objeto_json[0].msg=='error1'){
                     setDatos(form,JSON.parse(data)[1])
                 }                                           
               }
-            );    
+            );     
         }
       
 
@@ -1188,7 +1195,8 @@ if(objeto_json[0].msg=='error1'){
                 nf,
                 datos[i].nombre,
                 datos[i].numero,
-                datos[i].parentesco
+                datos[i].parentesco,
+                datos[i].id
             ];
           document.getElementById(idFormulario).appendChild(llenarTR(tr,ele));
    
@@ -1258,6 +1266,15 @@ if(objeto_json[0].msg=='error1'){
 
       }
 
+      function setEditable(td) {
+        if($(td).attr("contentEditable") == true){
+            $(td).attr("contentEditable","false");
+        }else{
+            $(td).attr("contentEditable","true");
+        }
+        
+      }
+
 
 
     </script>
@@ -1295,7 +1312,28 @@ if(objeto_json[0].msg=='error1'){
           
         }); 
       }
-    </script>
+
+
+ //EDITAR EL TD DIRECTAMENTE
+ /*
+var selectedObj;
+$('td').click(function(e){
+    // Handle the click
+   if ($('#currentInput').length == 0){
+      selectedObj = $(this);
+      var currentValue = $(this).text();
+      var newValue = currentValue;
+      $(this).html("<input id='currentInput' type='text' value='"+currentValue+"'/> <button onclick='setNewValue()'>Set</button>");
+   }
+});
+
+function setNewValue(){
+  var newValue = $('#currentInput').val();
+  selectedObj.html('');
+  selectedObj.text(newValue);
+}
+   */ 
+</script>
 
 
 

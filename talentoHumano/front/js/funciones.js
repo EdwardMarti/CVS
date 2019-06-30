@@ -103,7 +103,7 @@ function act_Cargo() {
 
 
 function empresa_Registrar_P() {
-    var url = "Empresa_principalInsert.html";
+    var url = "Empresa_principal_Insert.html";
     var datos = {};
     var rta = "#mostrarcontenido";
     ajax(url, datos, rta);
@@ -119,7 +119,7 @@ function empresa_Listar() {
 
 }
 function empresa_Listar_P() {
-    var url = "Empresa_principalList.html";
+    var url = "Empresa_principal_List_tabla.html";
     var datos = {};
     var rta = "#mostrarcontenido";
     ajax(url, datos, rta);
@@ -138,7 +138,7 @@ function Sucursal_Registrar() {
 }
 
 function sucursal_emp_Listar() {
-    var url = "SucursalList.html";
+    var url = "Sucursal_List.html";
     var datos = {};
     var rta = "#mostrarcontenido";
     ajax(url, datos, rta);
@@ -163,7 +163,7 @@ function area_Registrar() {
 
 }
 function area_Listar() {
-    var url = "Area_empresaList.html";
+    var url = "Area_empresa_List.html";
     var datos = {};
     var rta = "#mostrarcontenido";
     ajax(url, datos, rta);
@@ -204,7 +204,7 @@ function cargo_Registrar() {
 
 }
 function cargo_Listar() {
-    var url = "Cargo_empresoList.html";
+    var url = "Cargo_empresa_List.html";
     var datos = {};
     var rta = "#mostrarcontenido";
     ajax(url, datos, rta);
@@ -227,7 +227,7 @@ function cargo_RegistrarTodo() {
 
 }
 function puesto_Listar() {
-    var url = "PuestoList.html";
+    var url = "Puesto_List.html";
     var datos = {};
     var rta = "#mostrarcontenido";
     ajax(url, datos, rta);

@@ -8,14 +8,14 @@
 //    Somos los amish del software  \\
 include_once realpath('../../facade/UsuarioFacade.php');
 
-$cargo = $_POST['cargo'];
+$email = $_POST['email'];
 $contrasena = $_POST['contrasena'];
-$usuario_pass=md5($contrasena);
+
 
 //var_dump($cargo. ''.$contrasena);
-     $usuario = new Usuario();
+     $usuario = new $Usuarios();
       $usuario->setCargo_empreso_idcargo($cargo);
-      $usuario->setUsuario_pass($usuario_pass); 
+      $usuario->setUsuario_pass($contrasena); 
 
 $list=UsuarioFacade::loginUsers($usuario);
 //var_dump($list);

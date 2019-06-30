@@ -14,7 +14,7 @@ $list=PuestoFacade::listAllxSucursal_nombre($empresa);
 $rta="";
 foreach ($list as $obj => $Puesto) {	
 	$rta.="{
- 	    \"idpuesto\":\"{$Puesto->getidpuesto()}\",
+ 	    \"id_producto\":\"{$Puesto->getidpuesto()}\",
 	    \"nombre\":\"{$Puesto->getnombre()}\"
 	},";
 }

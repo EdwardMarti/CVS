@@ -19,7 +19,7 @@
                                           + Agregar
                                       </button>-->
 
-                            <button type="button" class="btn btn-primary" onclick="Sucursal_Registrar()">
+                            <button type="button" class="btn btn-primary" onclick="myModal_rs()">
                                 + Agregar Sucursal
                             </button>
 
@@ -77,33 +77,14 @@
                     </div> <!---------Fin Header  ---->
 
                     <div class="modal-body"> <!---------inicia Body---->
-                          <div  class="form-group">
+                        <div style="display: none"  class="form-group">
                           <label for="Inputidempresa">idempresa</label>
                           <input type="text" name="idempresa" class="form-control" id="Inputidempresa" placeholder="idempresa" >
                        </div>
-                        <div class="row">
-
-                            <div class="col-lg-6">
-                                <div class="form-group">
-
-
-                                    <select id="departamentos"  class="form-control"  onchange="cargarCiudades(this.value);">
-
-                                    </select>
-                                </div>  
-                            </div>
-
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <select id="ciudades"  class="form-control"  onchange="cargarContenido();">
-
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
+                      
                         <div class="form-group">
                             <label for="Inputnombre_empresa">Ciudad</label>
-                            <input type="text" name="nombre_empresa" class="form-control" id="Inputnombre_empresa" placeholder="Localizacion" onclick="cargarDepartamentos('Inputnombre_empresa');" readonly="readonly">
+                            <input type="text" name="nombre_empresa" class="form-control" id="Inputnombre_empresa" placeholder="Localizacion"  readonly="readonly">
                         </div>
                         <div class="form-group">
                             <label for="Inputnit_empresa">Telefono</label>
@@ -114,7 +95,7 @@
                             <input type="text" name="direccion_empresa" class="form-control" id="Inputdireccion_empresa" placeholder="direccion empresa">
                         </div>
 
-                        <div  class="form-group">
+                        <div style="display: none"  class="form-group">
                             <label for="InputEmpresa_p_idEmpresa_p">id_empresa</label>
                             <input type="text" name="Empresa_p_idEmpresa_p" class="form-control"  id="InputEmpresa_p_idEmpresa_p" placeholder="empresa">
                         </div>
@@ -260,41 +241,7 @@
 };
  
 </script>
-<script>
-    var miInput;
 
-      function cargarDepartamentos(idInput){
-        miInput = idInput;
-        $.get('../../../generales/back/controller/departamento/DepartamentoList.php',function(depa){
-          var mySelect=document.getElementById("departamentos");
-          removeAllChildren(mySelect);
-          mySelect.appendChild(createOPTION(-1,'SELECCIONE'));
-          depa = JSON.parse(depa);
-         for (var i = 1 ; i < depa.length; i++) {
-              mySelect.appendChild(createOPTION(depa[i].iddepartamento,depa[i].departamento_descripcion));
-            }  
-        });
-      //  $('#expedicionModal').modal();        
-      }
-
-      function cargarCiudades(departamento){
-        $.get('../../../generales/back/controller/ciudad/CiudadList.php',{'depa':departamento},function(depa){
-          var mySelect=document.getElementById("ciudades");
-          removeAllChildren(mySelect);
-          mySelect.appendChild(createOPTION(-1,'SELECCIONE'));
-          depa = JSON.parse(depa);
-         for (var i = 1 ; i < depa.length; i++) {
-              mySelect.appendChild(createOPTION(depa[i].idciudad,depa[i].ciudad_descripcion));
-            }  
-          
-        });
-      }
-
-      function cargarContenido(){
-        ciudad = $('select[id=ciudades] option:selected').text();
-        $('#'+miInput).val(ciudad);
-      }
-</script>
 
     <!-- That´s all folks! -->
 </html>
