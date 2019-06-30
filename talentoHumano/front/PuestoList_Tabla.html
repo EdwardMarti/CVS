@@ -19,7 +19,7 @@
                                           + Agregar
                                       </button>-->
 
-                            <button type="button" class="btn btn-primary" onclick="puesto_Registrar()">
+                            <button type="button" class="btn btn-primary" onclick="myModal_pueto()">
                                 + Agregar
                             </button>
 
@@ -84,6 +84,10 @@
                          <div class="form-group">
                           <label for="Inputnombre">nombre</label>
                           <input type="text" name="nombre" class="form-control" id="Inputnombre" placeholder="nombre">
+                       </div>
+                         <div class="form-group">
+                          <label for="Inputnombre">sucursal</label>
+                          <input type="text" name="empresa_idempresa" class="form-control" id="Inputempresa_idempresa" placeholder="nombre">
                        </div> 
                 
 
@@ -91,7 +95,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
 
-                        <button type="button" class="btn btn-primary" onclick="registrar()">Salvar Cambios</button>
+                        <button type="button" class="btn btn-primary" onclick="actualizar_puesto()">Salvar Cambios</button>
                     </div>
 
                 </form>
@@ -160,16 +164,21 @@
 
     </script>
     
+    
+    
     <script>
     var mySelect2;
        $(document).ready(function(){
                                       
-                      mySelect2=document.getElementById("Inputempresa_idempresa_p").value;
+                   //   mySelect2=document.getElementById("Inputempresa_idempresa_p").value;
+                       mySelect2=document.getElementById("Inputempresa_idempresa1").value;
+       document.getElementById("Inputempresa_idempresa1").value;
+     $('#Inputempresa_idempresa').val(mySelect2);
             //  mySelect2=document.getElementById("Inputempresa_idempresa").value=mySelect;   
        
           });
           
-     function registrar(){
+     function actualizar_puesto(){
       
          
         var url = "../back/controller/puesto/PuestoActualizar.php";
@@ -184,7 +193,7 @@
          
            {
                if(data=='true'){
-                 aceptar();
+                 aceptar_act_puesto();
                }
                           
            }
@@ -194,7 +203,7 @@
 
 
 
-     function aceptar(){
+     function aceptar_act_puesto(){
      $('#myModal').modal('hide');
        swal({
                         title: "Registro",
@@ -233,6 +242,7 @@
  
 </script>
 
+   
                               
 
 

@@ -1,11 +1,5 @@
 <?php
-/*
-              -------Creado por-------
-             \(x.x )/ Anarchy \( x.x)/
-              ------------------------
- */
 
-//    Ya no la quiero, es cierto, pero tal vez la quiero. Es tan corto el amor, y es tan largo el olvido.  \\
 include_once realpath('../../facade/Cargo_empresoFacade.php');
 $area = $_GET['area'];
 

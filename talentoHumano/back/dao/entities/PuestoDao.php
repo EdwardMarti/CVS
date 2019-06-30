@@ -182,7 +182,7 @@ $nombre=$puesto->getNombre();
       }
   }
 
-      public function insertarConsulta($sql){
+    public function insertarConsulta($sql){
           $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
           $sentencia=$this->cn->prepare($sql);
           $sentencia->execute(); 
