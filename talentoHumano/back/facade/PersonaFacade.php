@@ -213,6 +213,13 @@ class PersonaFacade {
      return $result;
   }
 
+  public static function listXuser($i){
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $personaDao =$FactoryDao->getpersonaDao(self::getDataBaseDefault());
+     $result = $personaDao->listXuser($i);
+     $personaDao->close();
+     return $result;
+  }
   public static function listXID($i){
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $personaDao =$FactoryDao->getpersonaDao(self::getDataBaseDefault());

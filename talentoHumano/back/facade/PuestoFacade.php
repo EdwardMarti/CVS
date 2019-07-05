@@ -34,9 +34,9 @@ class PuestoFacade {
    * @param idpuesto
    * @param nombre
    */
-  public static function insert( $idpuesto,  $nombre,$empresa_idempresa){
+  public static function insert( $nombre,$empresa_idempresa){
       $puesto = new Puesto();
-      $puesto->setIdpuesto($idpuesto); 
+//      $puesto->setIdpuesto($idpuesto); 
       $puesto->setNombre($nombre); 
       $puesto->setEmpresa_idempresa($empresa_idempresa); 
 

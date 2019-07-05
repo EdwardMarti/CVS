@@ -352,6 +352,32 @@ class PersonaDao implements IPersonaDao {
             return null;
         }
     }
+    
+    public function listXuser($i) {
+        $lista = array();
+        try {
+            $sql = "SELECT `id`, `cedula`,  `nombres`, `apellidos`, `correo`, `cargo_empreso_idcargo` FROM `todo_view2` WHERE `id` ='$i'";
+            $data = $this->ejecutarConsulta($sql);
+            for ($i = 0; $i < count($data); $i++) {
+                $persona = new Persona();
+                $persona->setId($data[$i]['id']);
+                $persona->setCedula($data[$i]['cedula']);
+                $persona->setNombres($data[$i]['nombres']);
+                $persona->setApellidos($data[$i]['apellidos']);
+              
+                $persona->setSexo($data[$i]['cargo_empreso_idcargo']);
+               
+                $persona->setCorreo($data[$i]['correo']);
+                
+
+                array_push($lista, $persona);
+            }
+            return $lista;
+        } catch (SQLException $e) {
+            throw new Exception('Primary key is null');
+            return null;
+        }
+    }
 
     // <editor-fold defaultstate="collapsed" desc="Insertar Especial">
     // 

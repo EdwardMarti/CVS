@@ -1,10 +1,20 @@
                
 <div class="panel panel-default">
                   <div align=center class="panel-heading">
-                      <h1><b>Registrar Empleado</b></h1></div>
+                      <h1><b>Registrar Usuario</b></h1></div>
                   <div align=center class="panel-body">
-                    
+                      
+                   
+                      
                           <div class="ibox-content">
+                              
+                                 <div class="form-group">
+                          <label for="Inputarea_empresa_idarea_emp">Usuarios</label>
+                          <select name="usuarios" class="form-control" id="Inputusuario" onchange="cargarDatos(this.value);">
+                              <option>SELECCIONE</option>
+                          </select>
+                      </div>
+                              
                          <div class="row">
                              <div class="col-lg-12">
                              
@@ -130,50 +140,55 @@
           
                 
     <!-- Latest compiled JavaScript -->
+    
+    
+                 <script>
+        
+        
 
-                    <script>
-                                    $(document).ready(function () {
-                                        $.get('../back/controller/empresa/EmpresaList.php',function(depa){
-          var mySelect=document.getElementById("Inputempresa_idempresa");
-        //  removeAllChildren(mySelect);
+        
+        
+        $(document).ready(function () { //no tocar //
+           $.get('../back/controller/persona/PersonaList_Todo.php',function(depa){
+          var mySelect=document.getElementById("Inputusuario");
+         removeAllChildren(mySelect);
              mySelect.appendChild(createOPTION(-1,'SELECCIONE'));
           depa = JSON.parse(depa);
          for (var i = 1 ; i < depa.length; i++) {
-              mySelect.appendChild(createOPTION(depa[i].idempresa,depa[i].nombre_empresa));
+              mySelect.appendChild(createOPTION(depa[i].id,depa[i].nombres+" "+depa[i].apellidos));
             }  
           
         });
+      
+      
                                     });
         </script>
-              
+    
+
+        
+        
+        
+        
+     
               <script>
               
 //---------------------------------------------------------------------
   
 
-   function cargarEmpresas(){      
-        $.get('../back/controller/empresa/EmpresaList.php',function(depa){
-          var mySelect=document.getElementById("Inputempresa_idempresa");
-          removeAllChildren(mySelect);
-             mySelect.appendChild(createOPTION(-1,'SELECCIONE'));
-          depa = JSON.parse(depa);
-         for (var i = 1 ; i < depa.length; i++) {
-              mySelect.appendChild(createOPTION(depa[i].idempresa,depa[i].nombre_empresa));
-            }  
-          
-        });
-        $('#cargosModal').modal();  
-      }
+ 
 
-
-   function cargarAreas(empresa){      
-        $.get('../back/controller/area_empresa/Area_empresaList.php',{'empresa':empresa},function(depa){
-          var mySelect=document.getElementById("Inputarea_empresa_idarea_emp");
-          removeAllChildren(mySelect);
-             mySelect.appendChild(createOPTION(-1,'SELECCIONE'));
+   function cargarDatos(empresa){      
+       
+        $.get('../back/controller/persona/PersonaListXUser.php',{'empresa':empresa},function(depa){
+        //  document.getElementById("Inputcedula").value=depa[i].cedula;
+          // $('#Inputnombre').val("");//
+         // removeAllChildren(mySelect);
+         //    mySelect.appendChild(createOPTION(-1,'SELECCIONE'));
           depa = JSON.parse(depa);         
          for (var i = 1 ; i < depa.length; i++) {
-              mySelect.appendChild(createOPTION(depa[i].idarea_emp,depa[i].nom_area));
+             //document.getElementById("Inputempresa_idempresa1").value;
+               document.getElementById("Inputcedula").value=depa[i].cedula;
+            //  mySelect.appendChild(createOPTION(depa[i].idarea_emp,depa[i].nom_area));
             }  
           
         });

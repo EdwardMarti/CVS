@@ -1287,7 +1287,7 @@
         //  console.log('mostrar'+idp);
           //Esto se supone me traera todo en formato {'entidad':{'atr':'val','atr':'val'},'entidad2':{'atr':'val'}}
           $.post('../back/controller/todo/PersonaTodo.php',{'idPersona':idp},function(data){
-               // console.log(data);  
+                console.log(data);  
                 dato = JSON.parse(data);
               
                   key = Object.keys(dato);                 
