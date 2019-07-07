@@ -125,11 +125,12 @@ $puesto_idpuesto=$cargo->getPuesto_idpuesto()->getIdpuesto();
       }
   }
   
-  public function registrarTraslado($cargo, $fecha_salida, $Observacion,$id) {
+  public function registrarTraslado($cargo,$id, $fecha_ingreso, $Observacion) {
       
 //      $rta=$this->update_fecha($fecha_salida, $Observacion,$id);
 //      echo $rta;
-      if($this->update_fecha($fecha_salida,$Observacion,$id)){
+      $Stado='0';
+      if($this->update_fecha($id, $fecha_ingreso, $Observacion,$Stado)){
           $rtas=$this->insertNuevo($cargo);
           if($rtas>0){
               
@@ -142,10 +143,10 @@ $puesto_idpuesto=$cargo->getPuesto_idpuesto()->getIdpuesto();
       
   }
   
-  public function update_fecha($fecha_ingreso, $Observacion,$id){
+  public function update_fecha($id, $fecha_ingreso, $Observacion,$Stado){
 
       try {
-          $sql= "UPDATE `cargo` SET `fecha_salida`='$fecha_ingreso', `observacion`='$Observacion' WHERE `id`='$id' ";
+          $sql= "UPDATE `cargo` SET `fecha_salida`='$fecha_ingreso', `observacion`='$Observacion',`stado`='$Stado' WHERE `id`='$id' ";
          return $this->insertarConsulta2($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');

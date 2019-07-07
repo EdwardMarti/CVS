@@ -75,7 +75,7 @@ class CargoFacade {
      return $rtn;
   }
   
-  public static function update_fecha($id, $fecha_ingreso, $Observacion){
+  public static function update_fecha($id, $fecha_ingreso, $Observacion,$Stado){
 //      $cargo = new Cargo();
 //      $cargo->setId($id); 
 //      $cargo->setFecha_ingreso($fecha_ingreso); 
@@ -83,7 +83,7 @@ class CargoFacade {
 
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $cargoDao =$FactoryDao->getcargoDao(self::getDataBaseDefault());
-     $rtn = $cargoDao->update_fecha($id, $fecha_ingreso, $Observacion);
+     $rtn = $cargoDao->update_fecha($id, $fecha_ingreso, $Observacion,$Stado);
      $cargoDao->close();
      return $rtn;
   }
