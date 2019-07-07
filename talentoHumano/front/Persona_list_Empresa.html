@@ -47,7 +47,7 @@
                                         <th style=" color:#FFFFFF; background-color: #616161  !important">Cargo</th>
                                         <th  style=" color:#FFFFFF; background-color: #616161  !important"><i class="fa fa-eye"></i></th>
                                         <th  style=" color:#FFFFFF; background-color: #616161  !important"><i class="fa fa-edit"></i></th>
-                                        <th style=" color:#FFFFFF; background-color: #616161  !important"><i class="fa fa-trash"></i></th>
+                                <!--        <th style=" color:#FFFFFF; background-color: #616161  !important"><i class="fa fa-trash"></i></th>-->
                                         <th style=" color:#FFFFFF; background-color: #616161  !important"><i class="fa fa-vcard"></i></th>
                                         <th style=" color:#FFFFFF; background-color: #616161  !important"><i class="fa fa-cloud-upload"></i></th>
                                     </tr>
@@ -67,7 +67,7 @@
                                         <th style=" color:#FFFFFF; background-color: #616161  !important">Cargo</th>
                                         <th  style=" color:#FFFFFF; background-color: #616161  !important"><i class="fa fa-eye"></i></th>
                                         <th  style=" color:#FFFFFF; background-color: #616161  !important"><i class="fa fa-edit"></i></th>
-                                        <th style=" color:#FFFFFF; background-color: #616161  !important"><i class="fa fa-trash"></i></th>
+                           <!--        <th style=" color:#FFFFFF; background-color: #616161  !important"><i class="fa fa-trash"></i></th>-->
                                         <th style=" color:#FFFFFF; background-color: #616161  !important"><i class="fa fa-vcard"></i></th>
                                         <th style=" color:#FFFFFF; background-color: #616161  !important"><i class="fa fa-cloud-upload"></i></th>
                                     </tr>
@@ -1287,9 +1287,9 @@
         //  console.log('mostrar'+idp);
           //Esto se supone me traera todo en formato {'entidad':{'atr':'val','atr':'val'},'entidad2':{'atr':'val'}}
           $.post('../back/controller/todo/PersonaTodo.php',{'idPersona':idp},function(data){
-                console.log(data);  
+                
                 dato = JSON.parse(data);
-              
+              console.log(dato);  
                   key = Object.keys(dato);                 
                   for( var j = 0; j < key.length; j++){
                     
@@ -1537,11 +1537,11 @@ document.getElementById("familiaressss").reset();
 
             }
             
- function mostrarCargo(idp,cargo,sucursal) {
+ function mostrarCargo(idp,cargo,nombre,apellido) {
          
             SUPER_GLOBAL=idp;
             SUPER_GLOBAL_IDCARGO=cargo;
-            SUPER_GLOBAL_SUCURSAL=sucursal;
+            SUPER_GLOBAL_NOMBRE=nombre+" "+apellido;
         
            cargo_RegistrarTodo();
              

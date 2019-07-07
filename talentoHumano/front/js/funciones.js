@@ -75,13 +75,14 @@ function empleado_Registrar_rapido() {
 //<editor-fold defaultstate="collapsed" desc="Persona">
 
 
-function empleado_Listar2() {
+function empleado_Listar2(empresa) {
+  //var  empresa="0";
     var url = "Persona_list_Empresa.html";
     var datos = {};
     var rta = "#mostrarcontenido";
     ajax(url, datos, rta);
 
- enviar("",'../back/controller/persona/PersonaList_Todo.php',postPersonaList); 
+ enviar("",'../back/controller/persona/PersonaList_Todo.php?empresa='+empresa,postPersonaList); 
 
 }
 

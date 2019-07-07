@@ -156,6 +156,18 @@ class PersonaFacade {
      $personaDao->update($persona);
      $personaDao->close();
   }
+  public static function updateCargo($id, $cargo_id){
+//      $persona = self::select($id);
+     // $persona->setCedula($id); 
+     // $persona->setNacionalidad($cargo_id); 
+     
+//      $persona->setCargo_id($cargo_id); 
+      
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $personaDao =$FactoryDao->getpersonaDao(self::getDataBaseDefault());
+     $personaDao->updateCargo($id, $cargo_id);
+     $personaDao->close();
+  }
 
   /**
    * Elimina un objeto Persona de la base de datos a partir de su(s) llave(s) primaria(s).
@@ -191,10 +203,10 @@ class PersonaFacade {
      $personaDao->close();
      return $result;
   }
-  public static function listAll_tabla(){
+  public static function listAll_tabla($id){
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $personaDao =$FactoryDao->getpersonaDao(self::getDataBaseDefault());
-     $result = $personaDao->listAll_tabla1();
+     $result = $personaDao->listAll_tabla1($id);
      $personaDao->close();
      return $result;
   }

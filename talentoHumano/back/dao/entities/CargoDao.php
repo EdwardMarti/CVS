@@ -48,7 +48,7 @@ $puesto_idpuesto=$cargo->getPuesto_idpuesto()->getIdpuesto();
       }
   }
   public function insertNuevo($cargo){
-        $id = $cargo->getId();
+       // $id = $cargo->getId();
         $fecha_ingreso = $cargo->getFecha_ingreso();
         $empresa_idempresa = $cargo->getEmpresa_idempresa()->getIdempresa();
         $area_empresa_idarea_emp = $cargo->getArea_empresa_idarea_emp()->getIdarea_emp();
@@ -58,8 +58,8 @@ $puesto_idpuesto=$cargo->getPuesto_idpuesto()->getIdpuesto();
         $Persona = $cargo->getPersona_id()->getId();
 
         try {
-          $sql= "INSERT INTO `cargo`( `id`, `fecha_ingreso`, `empresa_idempresa`, `area_empresa_idarea_emp`, `cargo_empreso_idcargo`, `puesto_idpuesto`, `Empresa_p_idEmpresa_p`, `persona_id`)"
-          ."VALUES ('$id','$fecha_ingreso','$empresa_idempresa','$area_empresa_idarea_emp','$cargo_empreso_idcargo','$puesto_idpuesto','$empresa_p','$Persona')";
+          $sql= "INSERT INTO `cargo`(`fecha_ingreso`, `empresa_idempresa`, `area_empresa_idarea_emp`, `cargo_empreso_idcargo`, `puesto_idpuesto`, `Empresa_p_idEmpresa_p`, `persona_id`)"
+          ."VALUES ('$fecha_ingreso','$empresa_idempresa','$area_empresa_idarea_emp','$cargo_empreso_idcargo','$puesto_idpuesto','$empresa_p','$Persona')";
           return $this->insertarConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');
@@ -124,14 +124,29 @@ $puesto_idpuesto=$cargo->getPuesto_idpuesto()->getIdpuesto();
           throw new Exception('Primary key is null');
       }
   }
-  public function update_fecha($cargo){
-      $id=$cargo->getId();
-$fecha_ingreso=$cargo->getFecha_ingreso();
-$puesto_idpuesto=$cargo->getPuesto_idpuesto()->getIdpuesto();
+  
+  public function registrarTraslado($cargo, $fecha_salida, $Observacion,$id) {
+      
+//      $rta=$this->update_fecha($fecha_salida, $Observacion,$id);
+//      echo $rta;
+      if($this->update_fecha($fecha_salida,$Observacion,$id)){
+          $rtas=$this->insertNuevo($cargo);
+          if($rtas>0){
+              
+              return $rtas;
+          }
+              
+      }
+      
+     
+      
+  }
+  
+  public function update_fecha($fecha_ingreso, $Observacion,$id){
 
       try {
-          $sql= "UPDATE `cargo` SET `fecha_ingreso`='$fecha_ingreso', `puesto_idpuesto`='$puesto_idpuesto' WHERE `id`='$id' ";
-         return $this->insertarConsulta($sql);
+          $sql= "UPDATE `cargo` SET `fecha_salida`='$fecha_ingreso', `observacion`='$Observacion' WHERE `id`='$id' ";
+         return $this->insertarConsulta2($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');
       }
@@ -207,6 +222,31 @@ $puesto_idpuesto=$cargo->getPuesto_idpuesto()->getIdpuesto();
           $sentencia = null;
           return $data;
     }
+    
+      public function updateConsulta($sql) {
+        $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sentencia = $this->cn->prepare($sql);
+        $sentencia->execute();
+        $rta = $sentencia->rowCount();
+        $sentencia = null;
+        return $rta;
+    }
+    
+       public function insertarConsulta2($sql) {
+        $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sentencia = $this->cn->prepare($sql);
+        if (!$sentencia->execute()) {
+            $result = " . $mysqli->errno .";
+            $sentencia = null;
+        } else {
+            $result = true;
+
+            $sentencia = null;
+        }
+
+        return $result;
+    }
+
     /**
      * Cierra la conexión actual a la base de datos
      */

@@ -185,6 +185,21 @@ class PersonaDao implements IPersonaDao {
             throw new Exception('Primary key is null');
         }
     }
+    
+    
+    public function updateCargo($id, $cargo_id) {
+      
+      //  $id = $persona->getCedula();
+     //   $cargo_id = $persona->getNacionalidad();
+       
+
+        try {
+            $sql = "UPDATE `persona` SET `cargo_id`='$cargo_id' WHERE `id`='$id' ";
+            return $this->insertarConsulta2($sql);
+        } catch (SQLException $e) {
+            throw new Exception('Primary key is null');
+        }
+    }
 
     /**
      * Elimina un objeto Persona en la base de datos.
@@ -248,11 +263,18 @@ class PersonaDao implements IPersonaDao {
             return null;
         }
     }
-    public function listAll_tabla1() {
+    public function listAll_tabla1($id) {
         $lista = array();
         try {
-            $sql = "SELECT `persona`.`id` , `persona`.`cedula`, `persona`.`nombres`, `persona`.`apellidos`,`cargo_id`, `car_emp`.`nom_cargo` AS `tipo_vigilancia_id`, `emp`.`nombre_empresa` AS `nivel_vigilancia_id_p` FROM `persona` join `cargo` `carg` on `carg`.`id` = `persona`.`cargo_id` join `cargo_empreso` `car_emp` on `car_emp`.`idcargo` = `carg`.`cargo_empreso_idcargo` join `empresa` `emp` on `emp`.`idempresa` = `carg`.`empresa_idempresa`"
-                    . "WHERE 1";
+            $sql = "SELECT `p`.`id` , `p`.`cedula`, `p`.`nombres`, `p`.`apellidos`,`p`.`cargo_id`, `car_emp`.`nom_cargo` AS `tipo_vigilancia_id`, `emp`.`nombre_empresa` AS `nivel_vigilancia_id_p` 
+FROM `persona` `p`
+join `cargo` `c` 
+on `c`.`id` = `p`.`cargo_id` 
+join `cargo_empreso` `car_emp` 
+on `car_emp`.`idcargo` = `c`.`cargo_empreso_idcargo` 
+join `empresa` `emp` 
+on `emp`.`idempresa` = `c`.`empresa_idempresa`
+WHERE `c`.`stado`='$id'";
             $data = $this->ejecutarConsulta($sql);
             for ($i = 0; $i < count($data); $i++) {
                 $persona = new Persona();
@@ -693,6 +715,14 @@ AND table_schema = 'talento_humano';";
         return $rta;
     }
 
+        public function insertarConsulta2($sql){
+          $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+          $sentencia=$this->cn->prepare($sql);
+          $sentencia->execute(); 
+          $sentencia = null;
+          return $this->cn->lastInsertId();
+    }
+    
     public function ejecutarConsulta($sql) {
         $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sentencia = $this->cn->prepare($sql);
@@ -706,7 +736,7 @@ AND table_schema = 'talento_humano';";
      * Cierra la conexión actual a la base de datos
      */
     public function close() {
-        $cn = null;
+        $cn = null; 
     }
 
     // <editor-fold defaultstate="collapsed" desc="Select id">
@@ -794,17 +824,36 @@ AND table_schema = 'talento_humano';";
             throw new Exception('Primary key is null');
             return null;
         }
-    }
+    } 
 
     public function select_viewP2($i) {
 
 
         try {
-            $sql = "select `id`,`cedula`,`nacionalidad`,`cedula_lugar_expedicion`, `nombres`, `apellidos`,
-`fechaNacimiento`,`lugar_nacimiento`, `sexo`,`grupo_sanguineo`, `estado_civil`,`correo`,
-`cargo_id`,`nivel_vigilancia_id_p`, `tipo_vigilancia_id`,`libreta`,`direccion`,
-  `barrio`, `estudio_seguridad`,`examen_medico`, `prueba_psicotecnica`, `nivel_academico`,
- `nivel_vigilancia`,`fecha_curso`,`nit_escuela`, `salud`,`pension`, `banco_nombre`,
+            $sql = "select `id`,
+                        `cedula`,
+                        `nacionalidad`,
+                        `cedula_lugar_expedicion`,
+                        `nombres`, 
+                        `apellidos`,
+                        `fechaNacimiento`,
+                        `lugar_nacimiento`, 
+                        `sexo`,
+                        `grupo_sanguineo`, 
+                        `estado_civil`,
+                        `correo`,
+                        `cargo_id`,
+                        `nivel_vigilancia_id_p`,
+                        `tipo_vigilancia_id`,
+                        `libreta`,
+                        `direccion`,
+                        `barrio`,
+                        `estudio_seguridad`,
+                        `examen_medico`,
+                        `prueba_psicotecnica`,
+                        `nivel_academico`,
+                        `nivel_vigilancia`,
+                        `fecha_curso`,`nit_escuela`, `salud`,`pension`, `banco_nombre`,
   `numero_cuenta`,`coop_nombre`, `coop_fecha`, `coop_nit`, `cnsc`, `fecha_acre_super`,`acta_consejo`,
   `fecha_aceptacion`, `psicofisico`,`fecha_examen_psicofisico`, `carnet_supervigilancia_idcarne`,
   `id_cargo`,`fecha_ingreso`,`empresa_idempresa`, `nombre_empresa`,`area_empresa_idarea_emp`,
@@ -830,7 +879,7 @@ AND table_schema = 'talento_humano';";
                                 'estado_civil' => $data[$i]['estado_civil'],
                                 'correo' => $data[$i]['correo'],
                                 'cargo_id' => $data[$i]['cargo_id'],
-                                'nivel_vigilancia_id' => $data[$i]['nivel_vigilancia_id_p'],
+                                'nivel_vigilancia_id_p' => $data[$i]['nivel_vigilancia_id_p'],
                                 'tipo_vigilancia_id' => $data[$i]['tipo_vigilancia_id'],
                                 'libreta' => $data[$i]['libreta']
                             ),

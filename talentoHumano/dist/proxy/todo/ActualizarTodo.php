@@ -37,7 +37,7 @@ class ActualizarTodo {
         //OK
         $banco = new Banco(); 
  		$banco->set_Meta_Columnas($this->array_TH['banco']); 
-        //OK
+        //OK 
         $fechas_particulares = new Fechas_particulares(); 
  		$fechas_particulares->set_Meta_Columnas($this->array_TH['fechas']); 
         //OK

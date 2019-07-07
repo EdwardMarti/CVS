@@ -9,7 +9,7 @@
 include_once realpath('../../facade/FamiliarFacade.php');
 $id = $_POST['idPersona'];
 //$id = '4';
-
+ 
 $list=FamiliarFacade::listXID($id);
 $rta="";
 foreach ($list as $obj => $Familiar) {	

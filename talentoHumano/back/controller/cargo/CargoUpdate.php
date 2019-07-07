@@ -9,12 +9,10 @@
 include_once realpath('../../facade/CargoFacade.php');
 
 $id = $_POST['idAct'];
-$fecha_ingreso = $_POST['fecha_ingresoAct'];
+$fecha_ingreso = $_POST['fecha_SalidaAct'];
+$Observacion = $_POST['observacion'];
 
-$Puesto_idpuesto = $_POST['puesto_idpuestoAct'];
-$puesto= new Puesto();
-$puesto->setIdpuesto($Puesto_idpuesto);
-CargoFacade::update_fecha($id, $fecha_ingreso,  $puesto);
+CargoFacade::update_fecha($id, $fecha_ingreso, $Observacion);
 echo "true";
 
 //That´s all folks!

@@ -57,9 +57,9 @@ class CargoFacade {
      $cargoDao->close();
      return $rtn;
   }
-  public static function insertNuevo( $id,  $fecha_ingreso,  $empresa_idempresa,  $area_empresa_idarea_emp,  $cargo_empreso_idcargo,  $puesto_idpuesto,$empresa_p,$persona){
+  public static function insertNuevo(   $fecha_ingreso,  $empresa_idempresa,  $area_empresa_idarea_emp,  $cargo_empreso_idcargo,  $puesto_idpuesto,$empresa_p,$persona,$fecha_Salida,$Observacion,$id){
       $cargo = new Cargo();
-      $cargo->setId($id); 
+//      $cargo->setId($id); 
       $cargo->setFecha_ingreso($fecha_ingreso); 
       $cargo->setEmpresa_idempresa($empresa_idempresa); 
       $cargo->setArea_empresa_idarea_emp($area_empresa_idarea_emp); 
@@ -70,20 +70,33 @@ class CargoFacade {
 
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $cargoDao =$FactoryDao->getcargoDao(self::getDataBaseDefault());
-     $rtn = $cargoDao->insertNuevo($cargo);
+     $rtn = $cargoDao->registrarTraslado($cargo,$fecha_Salida,$Observacion,$id);
      $cargoDao->close();
      return $rtn;
   }
   
-  public static function update_fecha( $id,  $fecha_ingreso, $puesto_idpuesto){
-      $cargo = new Cargo();
-      $cargo->setId($id); 
-      $cargo->setFecha_ingreso($fecha_ingreso); 
-      $cargo->setPuesto_idpuesto($puesto_idpuesto); 
+  public static function update_fecha($id, $fecha_ingreso, $Observacion){
+//      $cargo = new Cargo();
+//      $cargo->setId($id); 
+//      $cargo->setFecha_ingreso($fecha_ingreso); 
+//      $cargo->setPuesto_idpuesto($puesto_idpuesto); 
 
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $cargoDao =$FactoryDao->getcargoDao(self::getDataBaseDefault());
-     $rtn = $cargoDao->update_fecha($cargo);
+     $rtn = $cargoDao->update_fecha($id, $fecha_ingreso, $Observacion);
+     $cargoDao->close();
+     return $rtn;
+  }
+  
+  public static function registrarTraslado($id, $fecha_ingreso, $Observacion){
+//      $cargo = new Cargo();
+//      $cargo->setId($id); 
+//      $cargo->setFecha_ingreso($fecha_ingreso); 
+//      $cargo->setPuesto_idpuesto($puesto_idpuesto); 
+
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $cargoDao =$FactoryDao->getcargoDao(self::getDataBaseDefault());
+     $rtn = $cargoDao->registrarTraslado($id, $fecha_ingreso, $Observacion);
      $cargoDao->close();
      return $rtn;
   }

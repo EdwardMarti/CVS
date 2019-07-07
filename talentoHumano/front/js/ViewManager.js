@@ -830,8 +830,8 @@ function prePersonaList(container){
                 //----------------- Para una tabla -----------------------
                 Persona.viewHrefB = 'mostrarTodo("' + Persona.id +'");';
                 Persona.updateHrefB = 'mostrarActualizar("' + Persona.id + '");';
-                Persona.deleteHrefB = 'mostrarEliminar("' + Persona.id + '");';
-                Persona.cargoHrefB = 'mostrarCargo("' + Persona.id + '","' + Persona.cargo_id + '","' + Persona.nivel_vigilancia_id_id + '");';
+               // Persona.deleteHrefB = 'mostrarEliminar("' + Persona.id + '");';
+                Persona.cargoHrefB = 'mostrarCargo("' + Persona.id + '","' + Persona.cargo_id + '","' + Persona.nombres + '","' + Persona.apellidos + '");';
                 Persona.fileHrefB = 'mostrarSubirFile("' + Persona.id + '","' + Persona.cedula + '");';
                 
 //                delete Persona.cargo_id;

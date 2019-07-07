@@ -46,7 +46,7 @@
                                    <div class="form-group">
                                     <label for="Inputnivel_vigilancia_id_p">Nivel de Vigilancia</label>
                                     <select name="nivel_vigilancia_id_p" class="form-control" id="Inputnivel_vigilancia_id_p">
-                                            <option value="-1">SELECCIONE</option>
+                                         
                                     </select>                              
                                 </div>
                             </div>
@@ -186,7 +186,7 @@
                                   <th style="background-color: #ffca2e">Contador</th>
                                   <th style="background-color: #ffca2e">Nombre y apellidos</th>
                                   <th style="background-color: #ffca2e"># Celular</th>
-                                  <th style="background-color: #ffca2e">Parentesco</th>
+                                  <th style="background-color: #ffca2e">Mis_Parentescos</th>
                                   <th style="display:none;">idFamiliar</th>
                                 </tr>
                             </thead>
@@ -673,6 +673,46 @@
     </div>
   </div>
 </div>
+<!-- MODAL DE TIPOS -->
+
+<div  style="color: #000000" class="modal fade" id="tipoFamiliares" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Familiares</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+ <form> 
+                <div class="modal-body">
+                    <div class="step-content">
+                        <div class="text-left m-t-md">                            
+                            <div class="row">
+                                <div class="col-lg-12">
+                                  <div class="form-group">
+                                    <label style="color: #000000">Parentesco</label>
+                                      <select class="form-control" name="mi_nuevo_parentesco" id="mi_nuevo_parentesco">
+                                            
+                                      </select>
+                                  </div> 
+                                </div>
+                                </div>                           
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" onclick="finCambios()">GuardarCambios</button>
+                </div>
+            </form>
+      </div>
+   
+    </div>
+  </div>
+</div>
+
 
 <!-- Modal de Empresa -->
 <div class="modal fade" id="empresaModal"  style="color: black" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -728,6 +768,7 @@
 
 
 <script>
+
     
     var currentTab = 0; // Current tab is set to be the first tab (0)
    //showTab(currentTab); // Display the current tab
@@ -884,8 +925,9 @@ function showTab(n) { //MUESTRA EL NOMBRE EN LE BOTON
 
       $(document).ready(function() {
         cargarSelects();
+        setTimeout(function(){cargarPersona_updade(SUPER_GLOBAL)}, 1000);
        //   cargarEmpresas('Inputempresa_idempresa');
-        cargarPersona_updade(SUPER_GLOBAL);
+        
         //alert("su id:"+SUPER_GLOBAL);
         //console.log("scae el valor"+document.getElementById("Inputempresa_idempresa"));
       });
@@ -930,11 +972,12 @@ function showTab(n) { //MUESTRA EL NOMBRE EN LE BOTON
       function cuerpoFamiliar(){
         tr = document.createElement("tr");
         numFamiliares++;
+        usa = $('select[name="Parentesco"] option:selected').text();
         ele = [
           numFamiliares,
           $('#nombreParen').val(),
           $('#celularParen').val(),
-          $('#tipoParen').val()
+          $('#tipoParen').val()+"-"+usa
           ];
 
           fam = "f"+numFamiliares;
@@ -943,7 +986,8 @@ function showTab(n) { //MUESTRA EL NOMBRE EN LE BOTON
 
           document.getElementById("familiaressss").reset();
           document.getElementById("cuerpoFamiliar").appendChild(llenarTR(tr,ele));
-          
+          console.log(MISFAMILIARESNUEVOS);
+          console.log(numFamiliares);
       } 
 
    
@@ -953,7 +997,11 @@ function showTab(n) { //MUESTRA EL NOMBRE EN LE BOTON
           td = document.createElement("td");
           text = document.createTextNode(ele[i]);
           td.appendChild(text);     
-           td.setAttribute("onclick", "setEditable(this);");
+          if(i==3){
+            td.setAttribute("onclick", "cambiarFamiliarSelect(this);");
+          }else{
+            td.setAttribute("onclick", "setEditable(this);");
+          }
           if(i==4){
             td.setAttribute("style", "display:none;");
           }
@@ -978,7 +1026,8 @@ function showTab(n) { //MUESTRA EL NOMBRE EN LE BOTON
         res = {};
         res['nombre'] = $(hij[1]).text();
         res['celular'] = $(hij[2]).text();
-        res['parentesco'] = $(hij[3]).text();
+        mi_res = $(hij[3]).text();
+        res['parentesco'] = mi_res.split("-")[0]; 
         res['idF'] = $(hij[4]).text();
         return res; 
      }
@@ -1101,6 +1150,7 @@ function showTab(n) { //MUESTRA EL NOMBRE EN LE BOTON
           $.post('../back/controller/todo/PersonaTodo.php',{'idPersona':idp},function(data){
                // console.log(data);  
                 dato = JSON.parse(data);
+
                   key = Object.keys(dato);                 
                   for( var j = 0; j < key.length; j++){
                    //   console.log(dato[key[j]]);
@@ -1124,7 +1174,7 @@ function showTab(n) { //MUESTRA EL NOMBRE EN LE BOTON
       }
 
       function getNuevos(){
-        if(MISFAMILIARESNUEVOS.length > 0){
+        if(numFamiliares > 0){
           return MISFAMILIARESNUEVOS;
         }else{
           return {'vacio':'1'};
@@ -1142,9 +1192,10 @@ function showTab(n) { //MUESTRA EL NOMBRE EN LE BOTON
           $.post('../back/controller/todo/PersonaTodo.php',{'idPersona':idp},function(data){
                // console.log(data);  
                 dato = JSON.parse(data);
+                console.log(dato);
                   key = Object.keys(dato);                 
                   for( var j = 0; j < key.length; j++){
-                    //  console.log(dato[key[j]]);
+                      console.log(dato[key[j]]);
                       r = dato[key[j]];
                      setDatos(key[j].charAt(0).toUpperCase()+key[j].slice(1)+"Insert", r); 
                   }                                                      
@@ -1275,7 +1326,28 @@ function showTab(n) { //MUESTRA EL NOMBRE EN LE BOTON
         
       }
 
+      var mi_td = null;
+      function cambiarFamiliarSelect(td){
 
+        $.get('../../../generales/back/controller/tipo_familiar/Tipo_familiarList.php',function(depa){
+          var mySelect=document.getElementById("mi_nuevo_parentesco");
+          removeAllChildren(mySelect);
+          mySelect.appendChild(createOPTION(-1,'SELECCIONE'));
+          depa = JSON.parse(depa);
+         for (var i = 1 ; i < depa.length; i++) {
+              mySelect.appendChild(createOPTION(depa[i].idtipo_familiar,depa[i].tipo_familiar_descripcion));
+            }  
+        });
+
+        mi_td = td;
+
+        $("#tipoFamiliares").modal();
+      }
+
+      function finCambios(){
+        ss = $("#mi_nuevo_parentesco").val()+"-"+$('select[name="mi_nuevo_parentesco"] option:selected').text();
+       $(mi_td).text(ss);
+      }
 
     </script>
     

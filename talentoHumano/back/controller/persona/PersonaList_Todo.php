@@ -8,7 +8,12 @@
 //    Vva 'l doro  \\
 include_once realpath('../../facade/PersonaFacade.php');
 
-$list=PersonaFacade::listAll_tabla();
+//$empresa = $_POST["empresa"];//
+$empresa = $_GET['empresa'];
+//var_dump($id);
+//$id = '0';
+
+$list=PersonaFacade::listAll_tabla($empresa);
 $rta="";
 foreach ($list as $obj => $Persona) {	
 	$rta.="{

@@ -65,7 +65,7 @@ class Persona {
     }
 
     public function getNivel_vigilancia_id() {
-        return $this->COLUMNAS['nivel_vigilancia_id'];
+        return $this->COLUMNAS['nivel_vigilancia_id_p'];
     }
 
     public function getTipo_vigilancia_id() {
@@ -181,7 +181,7 @@ class Persona {
     public function setNivel_vigilancia_id($nivel_vigilancia_id) {
         if (is_null($nivel_vigilancia_id))
             $nivel_vigilancia_id = 'null';
-        $this->COLUMNAS['nivel_vigilancia_id'] = $nivel_vigilancia_id;
+        $this->COLUMNAS['nivel_vigilancia_id_p'] = $nivel_vigilancia_id;
     }
 
     public function setTipo_vigilancia_id($tipo_vigilancia_id) {

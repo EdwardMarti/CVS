@@ -66,8 +66,21 @@
              
                       
 
-                <li>
+           <!--     <li>
                     <a onclick="empleado_Listar2();"><i class="fa fa-th-large"></i> <span class="nav-label">Empleado</span>  </a>
+                </li>-->
+                
+                    <li>
+                    <a ><i class="fa fa-th-large"></i> <span class="nav-label">Empleado</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li>
+                            <a onclick="empleado_Listar2('0')">Empleados Activos</a>
+                        </li>
+                        <li>
+                            <a onclick="empleado_Listar2('1')">Empleados Retirados</a>
+                        </li>
+                     
+                    </ul>
                 </li>
                 
          

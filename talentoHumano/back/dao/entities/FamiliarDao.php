@@ -145,6 +145,7 @@ $persona_id=$familiar->getPersona_id()->getId();
   
     public function listXID($i){
       $lista = array();
+      $memo = array();
       try {
           $sql ="SELECT `familiar`.`id` AS 'idFamiliar', `nombre`, `parentesco`, `persona_id`,`numero` FROM `familiar` INNER JOIN `familiar_has_celular` on (`familiar`.`id` = `familiar_has_celular`.`familiar_id`) INNER JOIN `celular` ON (`celular`.`id` = `familiar_has_celular`.`celular_id`) WHERE `familiar`.`persona_id` = '$i'";
           $data = $this->ejecutarConsulta($sql);
@@ -153,7 +154,11 @@ $persona_id=$familiar->getPersona_id()->getId();
           $familiar->setId($data[$i]['idFamiliar']);
           $familiar->setNombre($data[$i]['nombre']);
          // $familiar->setApellido($data[$i]['apellido']);
-          $familiar->setParentesco($data[$i]['parentesco']);
+          $parentesco = $data[$i]['parentesco'];
+          if(!isset($memo[$parentesco])){
+            $memo[$parentesco] = $this->get_tipo_familiar_descripcion($parentesco); 
+          }        
+          $familiar->setParentesco($parentesco."-".$memo[$parentesco]);
           $familiar->numero = $data[$i]['numero'];
            $persona = new Persona();
            $persona->setId($data[$i]['persona_id']);
@@ -167,6 +172,23 @@ $persona_id=$familiar->getPersona_id()->getId();
       return null;
       }
   }
+
+private function get_tipo_familiar_descripcion($parentesco){
+  $dsn = 'mysql:dbname=datos_generales;host=localhost:3306';
+  $usuario = 'root';
+  $contraseña = 'Soporte';
+  try {
+      $gbd = new PDO($dsn, $usuario, $contraseña);
+      $gbd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $sentencia = $gbd->prepare("SELECT `tipo_familiar_descripcion` AS 'tipo' FROM `tipo_familiar` WHERE `idtipo_familiar` = '$parentesco'");
+      $sentencia->execute(); 
+      $data = $sentencia->fetchAll();
+      $sentencia = null;
+      return $data[0]['tipo'];
+  }catch (PDOException $e) {
+      echo 'Falló la conexión: ' . $e->getMessage();
+  }
+}
 
       public function insertarConsulta($sql){
           $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
