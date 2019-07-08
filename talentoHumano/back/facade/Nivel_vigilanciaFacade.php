@@ -34,9 +34,9 @@ class Nivel_vigilanciaFacade {
    * @param id
    * @param nombre
    */
-  public static function insert( $id,  $nombre){
+  public static function insert(   $nombre){
       $nivel_vigilancia = new Nivel_vigilancia();
-      $nivel_vigilancia->setId($id); 
+//      $nivel_vigilancia->setId($id); 
       $nivel_vigilancia->setNombre($nombre); 
 
      $FactoryDao=new FactoryDao(self::getGestorDefault());

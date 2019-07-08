@@ -4,12 +4,13 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/xampp1/htdocs/unik/cvs_web_1/talentoHumano/front/index.php</file>
-            <file>file:/C:/xampp1/htdocs/unik/cvs_web_1/talentoHumano/front/js/HtmlBuilder.js</file>
+            <file>file:/C:/xampp1/htdocs/unik/cvs_web_1/talentoHumano/front/Nivel_vigilanciaInsert.html</file>
+            <file>file:/C:/xampp1/htdocs/unik/cvs_web_1/talentoHumano/back/dao/entities/Nivel_vigilanciaDao.php</file>
+            <file>file:/C:/xampp1/htdocs/unik/cvs_web_1/talentoHumano/front/Empresa_principal_List_tabla.html</file>
             <file>file:/C:/xampp1/htdocs/unik/cvs_web_1/talentoHumano/front/js/ViewManager.js</file>
             <file>file:/C:/xampp1/htdocs/unik/cvs_web_1/talentoHumano/front/js/funciones.js</file>
-            <file>file:/C:/xampp1/htdocs/unik/cvs_web_1/talentoHumano/front/empleado_registrar_update.html</file>
-            <file>file:/C:/xampp1/htdocs/unik/cvs_web_1/talentoHumano/front/Persona_list_Empresa.html</file>
-            <file>file:/C:/xampp1/htdocs/unik/cvs_web_1/talentoHumano/front/CargoInsert.html</file>
+            <file>file:/C:/xampp1/htdocs/unik/cvs_web_1/talentoHumano/front/Nivel_vigilanciaList.html</file>
+            <file>file:/C:/xampp1/htdocs/unik/cvs_web_1/talentoHumano/back/controller/usuario/UsuarioLogin.php</file>
         </group>
     </open-files>
 </project-private>

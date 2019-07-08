@@ -12,7 +12,7 @@ $list=Tipo_vigilanciaFacade::listAll();
 $rta="";
 foreach ($list as $obj => $Tipo_vigilancia) {	
 	$rta.="{
- 	    \"idd\":\"{$Tipo_vigilancia->getid()}\",
+ 	    \"id\":\"{$Tipo_vigilancia->getid()}\",
 	    \"tipo_vigilancia\":\"{$Tipo_vigilancia->gettipo_vigilancia()}\"
 	},";
 }

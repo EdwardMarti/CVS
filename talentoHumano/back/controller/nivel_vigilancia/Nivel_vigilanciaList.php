@@ -12,7 +12,7 @@ $list=Nivel_vigilanciaFacade::listAll();
 $rta="";
 foreach ($list as $obj => $Nivel_vigilancia) {	
 	$rta.="{
- 	    \"idd\":\"{$Nivel_vigilancia->getid()}\",
+ 	    \"id\":\"{$Nivel_vigilancia->getid()}\",
 	    \"nombre\":\"{$Nivel_vigilancia->getnombre()}\"
 	},";
 }

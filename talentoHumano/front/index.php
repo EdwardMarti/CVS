@@ -110,19 +110,41 @@
                
                      <li>
                     <a href="index.html"><i class="fa fa-user-o"></i> <span class="nav-label">Administrador</span> <span class="fa arrow"></span></a>
-                               <ul class="nav nav-second-level collapse">
+                    <ul class="nav nav-second-level collapse">
                         <li class="">
-                                <a href="#" id="damian">Empleado <span class="fa arrow"></span></a>
-                                <ul class="nav nav-third-level collapse" style="height: 0px;">
-                                    <li>
-                                      <a onclick="empleado_Registrar_rapido2()">Registrar Empleados</a>
-                                    </li>
-                                   
+                            <a href="#" id="damian">Empleado <span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level collapse" style="height: 0px;">
+                                <li>
+                                    <a onclick="empleado_Registrar_rapido2()">Registrar Empleados</a>
+                                </li>
 
-                                </ul>
-                            </li>
-                      
-                       </ul>
+
+                            </ul>
+                        </li>
+                        <li class="">
+                            <a href="#" id="damian">Varios <span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level collapse" style="height: 0px;">
+                                <li>
+                                    <a onclick="Listar_nivel_vigilanci()">Registrar Nivel Vigilancia</a>
+                                </li>
+                                <li>
+                                    <a onclick="Listar_tipo_vigilanci()">Registrar Tipo Vigilancia</a>
+                                </li>
+                                <li>
+                                    <a onclick="empleado_Registrar_rapido2()">Registrar SuperVigilancia</a>
+                                </li>
+                                <li>
+                                    <a onclick="empleado_Registrar_rapido2()">Registrar Salud</a>
+                                </li>
+                                <li>
+                                    <a onclick="empleado_Registrar_rapido2()">Registrar Pension</a>
+                                </li>
+
+
+                            </ul>
+                        </li>
+
+                    </ul>
                
                 </li>
                <li>

@@ -71,6 +71,40 @@ function empleado_Registrar_rapido() {
 
 }
 
+//<editor-fold defaultstate="collapsed" desc="Varios">
+
+function Registrar_nivel_vigilanci() {
+    var url = "Nivel_vigilanciaList.html";
+//    var url = "Nivel_vigilanciaInsert.html";
+    var datos = {};
+    var rta = "#mostrarcontenido";
+    ajax(url, datos, rta);
+
+}
+function Listar_nivel_vigilanci() {
+    var url = "Nivel_vigilanciaList.html";
+//    var url = "Nivel_vigilanciaInsert.html";
+    var datos = {};
+    var rta = "#mostrarcontenido";
+    ajax(url, datos, rta);
+    
+    enviar("",'../back/controller/nivel_vigilancia/Nivel_vigilanciaList.php',postNivel_vigilanciaList); 
+
+}
+function Listar_tipo_vigilanci() {
+    var url = "Tipo_vigilanciaList.html";
+//    var url = "Nivel_vigilanciaInsert.html";
+    var datos = {};
+    var rta = "#mostrarcontenido";
+    ajax(url, datos, rta);
+    
+enviar("",'../back/controller/tipo_vigilancia/Tipo_vigilanciaList.php',postTipo_vigilanciaList); 
+
+}
+
+//</editor-fold>
+
+
 
 //<editor-fold defaultstate="collapsed" desc="Persona">
 

@@ -756,6 +756,7 @@ function preNivel_vigilanciaInsert(idForm){
  		if(state=="success"){
                      if(result=="true"){            
  			alert("Nivel_vigilancia registrado con éxito");
+                        window.location="../../../front/index.php";
                      }else{
                         alert("Hubo un errror en la inserción ( u.u)\n"+result);
                      } 		}else{
@@ -778,6 +779,7 @@ function preNivel_vigilanciaList(container){
             for(var i=1; i < Object.keys(json).length; i++) {   
                 var Nivel_vigilancia = json[i];
                 //----------------- Para una tabla -----------------------
+               Nivel_vigilancia.updateHrefB = 'mostrarActualizarNV("' + Nivel_vigilancia.id + '","' + Nivel_vigilancia.nombre + '");';
                 document.getElementById("Nivel_vigilanciaList").appendChild(createTR(Nivel_vigilancia));
                 //-------- Para otras opciones ver htmlBuilder.js ---------
             }
@@ -788,6 +790,9 @@ function preNivel_vigilanciaList(container){
          alert("Hubo un errror interno ( u.u)\n"+result);
      }
 }
+
+
+
 
 ////////// PERSONA \\\\\\\\\\
 function prePersonaInsert(idForm){
@@ -1089,6 +1094,7 @@ function preTipo_vigilanciaList(container){
 
             for(var i=1; i < Object.keys(json).length; i++) {   
                 var Tipo_vigilancia = json[i];
+                 Tipo_vigilancia.updateHrefB = 'mostrarActualizarTV("' + Tipo_vigilancia.id + '","' + Tipo_vigilancia.tipo_vigilancia + '");';
                 //----------------- Para una tabla -----------------------
                 document.getElementById("Tipo_vigilanciaList").appendChild(createTR(Tipo_vigilancia));
                 //-------- Para otras opciones ver htmlBuilder.js ---------

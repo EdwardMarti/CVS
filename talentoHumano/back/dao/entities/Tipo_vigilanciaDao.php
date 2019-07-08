@@ -28,12 +28,12 @@ private $cn;
      * @throws NullPointerException Si los objetos correspondientes a las llaves foraneas son null
      */
   public function insert($tipo_vigilancia){
-      $id=$tipo_vigilancia->getId();
+   //   $id=$tipo_vigilancia->getId();
 $tipo_vigilancia=$tipo_vigilancia->getTipo_vigilancia();
 
       try {
-          $sql= "INSERT INTO `tipo_vigilancia`( `id`, `tipo_vigilancia`)"
-          ."VALUES ('$id','$tipo_vigilancia')";
+          $sql= "INSERT INTO `tipo_vigilancia`( `tipo_vigilancia`)"
+          ."VALUES ('$tipo_vigilancia')";
           return $this->insertarConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');
@@ -110,7 +110,7 @@ $tipo_vigilancia=$tipo_vigilancia->getTipo_vigilancia();
       try {
           $sql ="SELECT `id`, `tipo_vigilancia`"
           ."FROM `tipo_vigilancia`"
-          ."WHERE 1";
+          ."WHERE `id`>'0'";
           $data = $this->ejecutarConsulta($sql);
           for ($i=0; $i < count($data) ; $i++) {
               $tipo_vigilancia= new Tipo_vigilancia();

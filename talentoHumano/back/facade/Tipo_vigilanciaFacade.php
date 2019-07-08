@@ -34,10 +34,10 @@ class Tipo_vigilanciaFacade {
    * @param id
    * @param tipo_vigilancia
    */
-  public static function insert( $id,  $tipo_vigilancia){
+  public static function insert(   $tipo_vigilancia1){
       $tipo_vigilancia = new Tipo_vigilancia();
-      $tipo_vigilancia->setId($id); 
-      $tipo_vigilancia->setTipo_vigilancia($tipo_vigilancia); 
+     // $tipo_vigilancia->setId($id); 
+      $tipo_vigilancia->setTipo_vigilancia($tipo_vigilancia1); 
 
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $tipo_vigilanciaDao =$FactoryDao->gettipo_vigilanciaDao(self::getDataBaseDefault());
@@ -69,9 +69,9 @@ class Tipo_vigilanciaFacade {
    * @param id
    * @param tipo_vigilancia
    */
-  public static function update($id, $tipo_vigilancia){
+  public static function update($id, $tipo_vigilancia1){
       $tipo_vigilancia = self::select($id);
-      $tipo_vigilancia->setTipo_vigilancia($tipo_vigilancia); 
+      $tipo_vigilancia->setTipo_vigilancia($tipo_vigilancia1); 
 
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $tipo_vigilanciaDao =$FactoryDao->gettipo_vigilanciaDao(self::getDataBaseDefault());
