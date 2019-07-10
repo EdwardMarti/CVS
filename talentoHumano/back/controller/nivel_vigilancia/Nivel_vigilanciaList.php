@@ -9,7 +9,7 @@
 include_once realpath('../../facade/Nivel_vigilanciaFacade.php');
 
 $list=Nivel_vigilanciaFacade::listAll();
-$rta="";
+$rta=""; 
 foreach ($list as $obj => $Nivel_vigilancia) {	
 	$rta.="{
  	    \"id\":\"{$Nivel_vigilancia->getid()}\",

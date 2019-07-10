@@ -57,7 +57,7 @@
           
         });
       }
-
+ 
        function construirSelectNivelVigilancia(idSexo){
         $.get('../back/controller/nivel_vigilancia/Nivel_vigilanciaList.php',function(depa){
           var mySelect=document.getElementById(idSexo);
@@ -77,7 +77,7 @@
            mySelect.appendChild(createOPTION(-1,'SELECCIONE'));
           depa = JSON.parse(depa);
          for (var i = 1 ; i < depa.length; i++) {
-              mySelect.appendChild(createOPTION(depa[i].idd,depa[i].nombre));
+              mySelect.appendChild(createOPTION(depa[i].id,depa[i].nombre));
             }  
           
         });
@@ -90,7 +90,7 @@
            mySelect.appendChild(createOPTION(-1,'SELECCIONE'));
           depa = JSON.parse(depa);
          for (var i = 1 ; i < depa.length; i++) {
-              mySelect.appendChild(createOPTION(depa[i].idd,depa[i].tipo_vigilancia));
+              mySelect.appendChild(createOPTION(depa[i].id,depa[i].tipo_vigilancia));
             }  
           
         });

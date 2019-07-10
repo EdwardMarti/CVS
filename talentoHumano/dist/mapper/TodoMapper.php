@@ -35,9 +35,7 @@ include substr(getcwd(), 0, strlen(getcwd())-10).'sql/SqlQuery.php';
 			$sentencia->execute(); 
 	      }
 
-	      //Actualiza familiares
-	      //Perdon por no implementar esto, me falta llevarme el id de la persona hacia la vista para actualizar	  
-
+	    
 
 	      
 	      foreach ($mis_Fami as $valor) {
@@ -111,7 +109,7 @@ include substr(getcwd(), 0, strlen(getcwd())-10).'sql/SqlQuery.php';
 	      return 1;
 	    } catch (Exception $e) {
 	      $this->db->rollBack(); 
-	    //  echo "Fallo: " . $e->getLine() . "  ".$e->getMessage();
+	      echo "Fallo: " . $e->getLine() . "  ".$e->getMessage();
 	      return -1;
 	    }
 

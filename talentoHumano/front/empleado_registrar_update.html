@@ -1076,9 +1076,10 @@ function showTab(n) { //MUESTRA EL NOMBRE EN LE BOTON
         
         t = JSON.parse(JSON.stringify(todo));   
         
-          console.log(t);
+          //console.log(t);
             
         $.post('../dist/proxy/todo/actualizar.php',t,function(data){
+          console.log(data);
           if(data==1){
               aceptarPersona();
           }else{
@@ -1192,10 +1193,10 @@ function showTab(n) { //MUESTRA EL NOMBRE EN LE BOTON
           $.post('../back/controller/todo/PersonaTodo.php',{'idPersona':idp},function(data){
                // console.log(data);  
                 dato = JSON.parse(data);
-                console.log(dato);
+                //console.log(dato);
                   key = Object.keys(dato);                 
                   for( var j = 0; j < key.length; j++){
-                      console.log(dato[key[j]]);
+                      //console.log(dato[key[j]]);
                       r = dato[key[j]];
                      setDatos(key[j].charAt(0).toUpperCase()+key[j].slice(1)+"Insert", r); 
                   }                                                      
